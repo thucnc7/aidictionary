@@ -1,0 +1,62 @@
+# Thuật ngữ bổ sung thủ công; thêm tùy ý
+RAG
+retrieval-augmented generation
+LoRA
+QLoRA
+PEFT
+RLHF
+DPO
+SFT
+instruction tuning
+mixture of experts
+KV cache
+speculative decoding
+quantization
+GGUF
+context window
+system prompt
+prompt injection
+jailbreak
+hallucination
+chain-of-thought
+reasoning model
+test-time compute
+agentic
+tool use
+function calling
+MCP	Model Context Protocol, an open protocol for connecting LLM apps to tools and data
+vector database
+reranker
+BPE
+FlashAttention
+RoPE
+grouped-query attention
+latent diffusion
+VAE
+CLIP
+vision-language model
+knowledge distillation
+synthetic data
+scaling law
+emergent ability
+constitutional AI
+red teaming
+guardrails
+eval
+MMLU
+top-p sampling
+greedy decoding
+logits
+in-context learning
+grounding
+open-weight model
+frontier model
+AGI
+mechanistic interpretability
+sparse autoencoder
+world model
+reward hacking
+GPU
+TPU
+CUDA
+FLOPS
