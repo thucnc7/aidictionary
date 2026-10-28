@@ -1,10 +1,16 @@
 """Gộp từ điển nền + thuật ngữ AI, sinh dạng biến tố, dựng HTML từng mục."""
+import argparse
 import csv
 import html
 import json
 import os
+import shutil
+import subprocess
+import sys
 
 from lemminflect import getAllInflections, getAllInflectionsOOV
+
+from aidict.base import load_base
 
 UPOS = {"n": "NOUN", "noun": "NOUN", "v": "VERB", "verb": "VERB", "adj": "ADJ", "adv": "ADV"}
 POS_VI = {"noun": "danh từ", "n": "danh từ", "verb": "động từ", "v": "động từ", "adj": "tính từ",
@@ -110,3 +116,63 @@ def export_review(enriched: dict, path: str):
         w.writerow(["term", "vi", "keep_en", "short_vi"])
         for e in enriched.values():
             w.writerow([e["term"], "; ".join(e["vi"]), e["keep_en"], e["short_vi"]])
+
+
+TITLE = "AI Dictionary Anh–Việt"
+DESC = ("Wiktionary tiếng Việt (CC BY-SA, qua kaikki.org); Google ML Glossary (CC BY 4.0); "
+        "Wikipedia Glossary of AI (CC BY-SA); Stanford cheatsheets (MIT); "
+        "giải thích tiếng Việt do LLM sinh. Dùng cá nhân.")
+
+
+def write_opf(entries: list[tuple[str, list[str], str]], raw_dir: str) -> str:
+    """PyGlossary sinh OPF + XHTML dạng từ điển Kindle; kindlegen chạy riêng ở run_kindlegen."""
+    from pyglossary.glossary_v2 import Glossary
+    Glossary.init()
+    glos = Glossary()
+    for hw, alts, body in entries:
+        glos.addEntry(glos.newEntry([hw, *alts], body, defiFormat="h"))
+    glos.setInfo("title", TITLE)
+    glos.setInfo("description", DESC)
+    glos.sourceLangName = "English"
+    glos.targetLangName = "Vietnamese"
+    shutil.rmtree(raw_dir, ignore_errors=True)
+    glos.write(raw_dir, formatName="Mobi", kindlegen_path="")
+    return os.path.join(raw_dir, "OEBPS", "content.opf")
+
+
+def run_kindlegen(opf: str, kindlegen: str, out_path: str, log_path: str) -> str:
+    # cùng tham số PyGlossary dùng; tự chạy để giữ log và báo lỗi (PyGlossary chỉ log, không raise)
+    r = subprocess.run([kindlegen, opf, "-gen_ff_mobi7", "-dont_append_source", "-o", "content.mobi"],
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    with open(log_path, "w", encoding="utf-8") as f:
+        f.write(r.stdout + r.stderr)
+    mobi = os.path.join(os.path.dirname(opf), "content.mobi")
+    if not os.path.exists(mobi):
+        sys.exit(f"kindlegen không tạo được file .mobi (exit {r.returncode}), xem {log_path}")
+    shutil.copyfile(mobi, out_path)
+    return out_path
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--limit-base", type=int, help="chỉ giữ N từ nền đầu tiên để build thử nhanh")
+    a = ap.parse_args()
+    kindlegen = os.environ.get("KINDLEGEN") or os.path.join(
+        os.environ.get("LOCALAPPDATA", ""), "Amazon", "Kindle Previewer 3", "lib", "fc", "bin", "kindlegen.exe")
+    if not os.path.exists(kindlegen):
+        sys.exit(f"Không thấy kindlegen tại {kindlegen}. Cài Kindle Previewer 3 hoặc đặt biến KINDLEGEN.")
+    base = load_base("data/raw/vi-extract.jsonl.gz")
+    if a.limit_base:
+        base = dict(list(base.items())[:a.limit_base])
+    terms = _read_jsonl("data/terms.jsonl")
+    enriched = load_enriched("data/enriched.jsonl", "data/overrides.jsonl")
+    os.makedirs("build", exist_ok=True)
+    export_review(enriched, "build/review.csv")
+    entries = assemble(base, terms, enriched)
+    print(f"{len(entries)} mục, đang chạy kindlegen...", flush=True)
+    opf = write_opf(entries, "build/aidict")
+    print(run_kindlegen(opf, kindlegen, "build/aidict.mobi", "build/kindlegen.log"))
+
+
+if __name__ == "__main__":
+    main()
