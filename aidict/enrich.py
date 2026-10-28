@@ -129,14 +129,18 @@ def run(terms_path: str, out_path: str, pairs_path: str, batch_size: int = 8, li
         return items
 
     written = 0
-    with ThreadPoolExecutor(workers) as ex, open(out_path, "a", encoding="utf-8") as f:
-        for fut in as_completed([ex.submit(work, b) for b in batches]):
-            items = fut.result()
-            f.writelines(json.dumps(e, ensure_ascii=False) + "\n" for e in items)
-            f.flush()
-            written += len(items)
-            done |= {e["term"] for e in items}
-            print(f"{len(done)}/{len(terms)}", flush=True)
+    ex = ThreadPoolExecutor(workers)
+    try:
+        with open(out_path, "a", encoding="utf-8") as f:
+            for fut in as_completed([ex.submit(work, b) for b in batches]):
+                items = fut.result()
+                f.writelines(json.dumps(e, ensure_ascii=False) + "\n" for e in items)
+                f.flush()
+                written += len(items)
+                done |= {e["term"] for e in items}
+                print(f"{len(done)}/{len(terms)}", flush=True)
+    finally:  # Ctrl+C: huỷ các batch chưa chạy thay vì gọi LLM rồi bỏ kết quả
+        ex.shutdown(wait=False, cancel_futures=True)
     return written
 
 

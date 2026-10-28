@@ -1,4 +1,6 @@
 import json
+import time
+import pytest
 from aidict.enrich import content_of, parse_response, run
 
 ITEM = {"term": "overfitting", "pos": "n", "vi": ["quá khớp"], "keep_en": True,
@@ -45,6 +47,23 @@ def test_run_parallel_writes_all(tmp_path):
     t, o, p = _files(tmp_path)
     assert run(t, o, p, batch_size=1, workers=2, call=echo) == 2
     assert run(t, o, p, batch_size=1, workers=2, call=echo) == 0
+
+def test_run_interrupt_cancels_pending_batches(tmp_path):
+    calls = []
+    def interrupted(messages):
+        calls.append(1)
+        if len(calls) == 1:
+            raise KeyboardInterrupt
+        time.sleep(0.3)
+        return "[]"
+    terms = tmp_path / "terms.jsonl"
+    terms.write_text("".join(json.dumps({"term": f"t{i}", "definitions_en": [], "tags": [], "sources": []}) + "\n"
+                             for i in range(5)), encoding="utf-8")
+    (tmp_path / "pairs.jsonl").write_text("", encoding="utf-8")
+    with pytest.raises(KeyboardInterrupt):
+        run(str(terms), str(tmp_path / "out.jsonl"), str(tmp_path / "pairs.jsonl"), batch_size=1, workers=1, call=interrupted)
+    time.sleep(1)
+    assert len(calls) <= 2  # các batch còn chờ bị huỷ, không gọi LLM tiếp
 
 def test_run_survives_errors(tmp_path):
     def boom(messages): raise OSError("network down")

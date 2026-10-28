@@ -76,16 +76,25 @@ def render_base(b: dict) -> str:
     return "".join(p)
 
 
-def assemble(base: dict, terms: list[dict], enriched: dict[str, dict]) -> list[tuple[str, list[str], str]]:
-    base_lc = {w.lower(): w for w in base}  # ponytail: hai từ chỉ khác hoa/thường (Bush/bush) thì lấy từ sau
+def assemble(base: dict, terms: list[dict], enriched: dict[str, dict],
+             no_merge: frozenset | set = frozenset()) -> list[tuple[str, list[str], str]]:
+    base_lc = {}
+    for w in base:  # hai từ chỉ khác hoa/thường (act/ACT) thì ưu tiên bản chữ thường
+        if w.lower() not in base_lc or w == w.lower():
+            base_lc[w.lower()] = w
     ai, missing = {}, 0
     for t in terms:
         e = enriched.get(t["term"])
         if not e:
             missing += 1
             continue
-        # từ viết tắt viết hoa không gộp vào từ thường (GAN ≠ gan)
-        hw = t["term"] if t["term"].isupper() else base_lc.get(t["term"].lower(), t["term"])
+        s = t["term"]
+        # viết tắt (GAN), chữ hoa giữa từ (ReCoRD, IoU) và tên riêng trong no_merge (Pro, Gemini)
+        # thành mục riêng phân biệt hoa/thường, không chiếm từ thường (gan, record, pro)
+        if s.isupper() or s[1:] != s[1:].lower() or s in no_merge or s in base:
+            hw = s
+        else:
+            hw = base_lc.get(s.lower(), s)
         ai[hw] = (e, t)
     if missing:
         print(f"{missing} thuật ngữ chưa có bản dịch, bỏ qua")
@@ -166,9 +175,11 @@ def main():
         base = dict(list(base.items())[:a.limit_base])
     terms = _read_jsonl("data/terms.jsonl")
     enriched = load_enriched("data/enriched.jsonl", "data/overrides.jsonl")
+    with open("data/no_merge_terms.txt", encoding="utf-8") as f:
+        no_merge = {line.strip() for line in f if line.strip() and not line.startswith("#")}
     os.makedirs("build", exist_ok=True)
     export_review(enriched, "build/review.csv")
-    entries = assemble(base, terms, enriched)
+    entries = assemble(base, terms, enriched, no_merge)
     print(f"{len(entries)} mục, đang chạy kindlegen...", flush=True)
     opf = write_opf(entries, "build/aidict")
     print(run_kindlegen(opf, kindlegen, "build/aidict.mobi", "build/kindlegen.log"))

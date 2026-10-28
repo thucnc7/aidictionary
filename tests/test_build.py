@@ -33,6 +33,18 @@ def test_inflection_colliding_headword_dropped():
 def test_render_escapes_html():
     assert "A model &lt;b&gt; &amp; co" in entries()["transformer"][1]
 
+def test_exact_case_base_word_preferred():
+    base = {"act": S("Hành động."), "ACT": S("Kỳ thi ACT.")}  # thứ tự như Wiktionary: act trước ACT
+    e = {hw: html for hw, _, html in assemble(base, [T("act")], {"act": E("act")})}
+    assert "[AI]" in e["act"] and "[AI]" not in e["ACT"]
+
+def test_mixed_case_and_no_merge_terms_stay_separate():
+    base = {"record": S("Hồ sơ."), "pro": S("Tán thành.")}
+    e = {hw: html for hw, _, html in assemble(base, [T("ReCoRD"), T("Pro")], {"ReCoRD": E("ReCoRD"), "Pro": E("Pro")},
+                                              no_merge={"Pro"})}
+    assert "[AI]" not in e["record"] and "[AI]" in e["ReCoRD"]
+    assert "[AI]" not in e["pro"] and "[AI]" in e["Pro"]
+
 def test_forms():
     assert {"queries"} <= forms("query", "n")
     assert {"fine-tuned", "fine-tuning", "fine-tunes"} <= forms("fine-tune", "v", oov=True)

@@ -1,0 +1,15 @@
+# Thuật ngữ AI là tên riêng: giữ thành mục riêng (phân biệt hoa/thường), không gộp vào từ thường cùng chữ.
+# Ví dụ "Pro" (model Gemini) không được chiếm mục "pro" (tán thành). Thêm/bớt tùy ý, mỗi dòng một thuật ngữ.
+Cobweb
+Estimator
+Fiddle
+Flax
+Gemini
+Gemma
+Nano
+Pax
+Praxis
+Pro
+Saver
+Ultra
+Vertex
