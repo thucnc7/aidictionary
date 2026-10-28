@@ -16,6 +16,11 @@ def test_parse_response_rejects_bad():
     assert parse_response(json.dumps([missing, other]), ["overfitting"]) == []
     assert parse_response("xin lỗi, tôi không thể", ["overfitting"]) == []
 
+def test_parse_response_coerces_string_lists():
+    # model đôi khi trả "vi": "đóng bao" thay vì ["đóng bao"]
+    got = parse_response(json.dumps([{**ITEM, "vi": "quá khớp", "aliases": ""}]), ["overfitting"])
+    assert got == [{**ITEM, "vi": ["quá khớp"], "aliases": []}]
+
 def _files(tmp_path):
     terms, out, pairs = tmp_path / "terms.jsonl", tmp_path / "enriched.jsonl", tmp_path / "pairs.jsonl"
     terms.write_text("".join(json.dumps({"term": t, "definitions_en": [], "tags": [], "sources": ["manual"]}) + "\n"
@@ -32,6 +37,14 @@ def test_run_resumes(tmp_path):
     assert run(t, o, p, call=fake) == 1
     assert run(t, o, p, call=fake) == 0
     assert "dropout" in calls[1][-1]["content"] and "overfitting" not in calls[1][-1]["content"]
+
+def test_run_parallel_writes_all(tmp_path):
+    def echo(messages):
+        [t] = json.loads(messages[-1]["content"])
+        return json.dumps([{**ITEM, "term": t["term"]}])
+    t, o, p = _files(tmp_path)
+    assert run(t, o, p, batch_size=1, workers=2, call=echo) == 2
+    assert run(t, o, p, batch_size=1, workers=2, call=echo) == 0
 
 def test_run_survives_errors(tmp_path):
     def boom(messages): raise OSError("network down")

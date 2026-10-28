@@ -6,6 +6,7 @@ import re
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 SYSTEM_PROMPT = """Bạn là biên tập viên từ điển thuật ngữ AI Anh–Việt, phục vụ người Việt đọc sách và bài báo kỹ thuật tiếng Anh trên Kindle.
@@ -56,6 +57,10 @@ def parse_response(text: str, expected: list[str]) -> list[dict]:
         return []
     want, out = set(expected), []
     for d in data:
+        if isinstance(d, dict):
+            for k in ("vi", "related", "aliases"):  # model đôi khi trả chuỗi thay vì mảng
+                if isinstance(d.get(k), str):
+                    d[k] = [d[k]] if d[k].strip() else []
         if _valid(d) and d["term"] in want:
             want.discard(d["term"])  # LLM trả trùng một term thì giữ bản đầu
             out.append({k: d[k] for k in FIELDS})
@@ -105,24 +110,33 @@ def _read_jsonl(path: str) -> list:
 
 
 def run(terms_path: str, out_path: str, pairs_path: str, batch_size: int = 8, limit: int | None = None,
-        call=call_llm) -> int:
+        call=call_llm, workers: int = 1) -> int:
     terms = _read_jsonl(terms_path)
     pairs = [tuple(p) for p in _read_jsonl(pairs_path)]
     done = {e["term"] for e in _read_jsonl(out_path)}
     todo = [t for t in terms if t["term"] not in done][:limit]
-    written = 0
-    for i in range(0, len(todo), batch_size):
-        batch = todo[i:i + batch_size]
+    batches = [todo[i:i + batch_size] for i in range(0, len(todo), batch_size)]
+
+    def work(batch):
+        names = [t["term"] for t in batch]
         try:
-            items = parse_response(call(build_messages(batch, pairs)), [t["term"] for t in batch])
+            items = parse_response(call(build_messages(batch, pairs)), names)
         except Exception as e:  # term thiếu sẽ được làm lại ở lần chạy sau
-            print(f"cảnh báo: batch {i // batch_size} lỗi: {e}")
-            continue
-        with open(out_path, "a", encoding="utf-8") as f:
+            print(f"cảnh báo: batch {names[0]}… lỗi: {e}", flush=True)
+            return []
+        if len(items) < len(names):
+            print(f"cảnh báo: batch {names[0]}… thiếu {len(names) - len(items)}/{len(names)}", flush=True)
+        return items
+
+    written = 0
+    with ThreadPoolExecutor(workers) as ex, open(out_path, "a", encoding="utf-8") as f:
+        for fut in as_completed([ex.submit(work, b) for b in batches]):
+            items = fut.result()
             f.writelines(json.dumps(e, ensure_ascii=False) + "\n" for e in items)
-        written += len(items)
-        done |= {e["term"] for e in items}
-        print(f"{len(done)}/{len(terms)}", flush=True)
+            f.flush()
+            written += len(items)
+            done |= {e["term"] for e in items}
+            print(f"{len(done)}/{len(terms)}", flush=True)
     return written
 
 
@@ -130,6 +144,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int)
     ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args()
-    n = run("data/terms.jsonl", "data/enriched.jsonl", "data/cheatsheet_pairs.jsonl", a.batch_size, a.limit)
+    n = run("data/terms.jsonl", "data/enriched.jsonl", "data/cheatsheet_pairs.jsonl", a.batch_size, a.limit,
+            workers=a.workers)
     print(f"mới: {n}")
