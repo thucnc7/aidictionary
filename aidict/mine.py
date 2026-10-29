@@ -3,6 +3,7 @@ import json
 import os
 import re
 import time
+import urllib.error
 import xml.etree.ElementTree as ET
 from collections import Counter
 
@@ -92,18 +93,24 @@ def parse_term_list(text: str) -> list[str]:
     return [s.strip() for s in data if isinstance(s, str) and s.strip()] if isinstance(data, list) else []
 
 
-def fetch_arxiv(cat: str, total: int, page: int = 500) -> list[str]:
+def fetch_arxiv(cat: str, total: int, page: int = 200, get=fetch, sleep=time.sleep) -> list[str]:
     ns = {"a": "http://www.w3.org/2005/Atom"}
     out = []
     for start in range(0, total, page):
-        for _ in range(3):  # arXiv đôi khi trả trang rỗng khi quá tải
-            root = ET.fromstring(fetch(ARXIV.format(cat=cat, start=start, n=page)))
-            entries = root.findall("a:entry", ns)
+        entries = []
+        for attempt in range(6):
+            try:
+                entries = ET.fromstring(get(ARXIV.format(cat=cat, start=start, n=page))).findall("a:entry", ns)
+            except urllib.error.HTTPError as e:
+                if e.code not in (429, 503):
+                    raise
+                sleep(60 * 2 ** attempt)  # bị chặn tạm vì gọi dày: chờ 1, 2, 4… phút
+                continue
             if entries:
                 break
-            time.sleep(10)
+            sleep(10)  # arXiv đôi khi trả trang rỗng khi quá tải
         out += [" ".join((e.findtext(f"a:{k}", "", ns) or "").split()) for e in entries for k in ("title", "summary")]
-        time.sleep(3)  # quy định của arXiv API: tối đa 1 request / 3 giây
+        sleep(5)  # arXiv API yêu cầu tối thiểu 3 giây giữa các request
     return out
 
 
@@ -118,15 +125,16 @@ def _ask(prompt: str, payload, call) -> list[str]:
 
 def main(per_cat: int = 1500, call=call_llm):
     os.makedirs("data/raw", exist_ok=True)
-    cache = "data/raw/arxiv.jsonl"
-    if os.path.exists(cache):
+    texts = []
+    for c in CATS:  # cache từng chuyên mục, lỗi giữa chừng không phải tải lại phần đã có
+        cache = f"data/raw/arxiv-{c}.jsonl"
+        if not os.path.exists(cache):
+            got = fetch_arxiv(c, per_cat)
+            with open(cache, "w", encoding="utf-8") as f:
+                f.writelines(json.dumps(t, ensure_ascii=False) + "\n" for t in got)
         with open(cache, encoding="utf-8") as f:
-            texts = [json.loads(line) for line in f]
-    else:
-        texts = [t for c in CATS for t in fetch_arxiv(c, per_cat)]
-        with open(cache, "w", encoding="utf-8") as f:
-            f.writelines(json.dumps(t, ensure_ascii=False) + "\n" for t in texts)
-    print(f"arxiv: {len(texts) // 2} abstract", flush=True)
+            texts += [json.loads(line) for line in f]
+        print(f"arxiv {c}: tổng {len(texts) // 2} abstract", flush=True)
 
     with open("data/terms.jsonl", encoding="utf-8") as f:
         terms = [json.loads(line) for line in f]

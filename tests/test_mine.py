@@ -1,4 +1,4 @@
-from aidict.mine import acronym_pairs, candidate_ngrams, parse_term_list
+from aidict.mine import acronym_pairs, candidate_ngrams, fetch_arxiv, parse_term_list
 from aidict.sources import parse_d2l_glossary, parse_hf_glossary
 
 def test_parse_d2l_glossary():
@@ -34,6 +34,19 @@ def test_candidate_ngrams():
     assert "inference" not in got        # đã có trong từ điển AI
     assert "speculative" not in got      # từ đơn có sẵn trong từ điển nền
     assert not any(k.startswith(("we ", "the ")) or k.endswith(" to") for k in got)
+
+def test_fetch_arxiv_backs_off_on_429():
+    import urllib.error
+    atom = ('<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>Speculative  decoding</title>'
+            '<summary>We study it.</summary></entry></feed>')
+    calls, sleeps = [], []
+    def get(url):
+        calls.append(url)
+        if len(calls) == 1:
+            raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+        return atom
+    assert fetch_arxiv("cs.CL", 1, page=1, get=get, sleep=sleeps.append) == ["Speculative decoding", "We study it."]
+    assert len(calls) == 2 and sleeps[0] >= 60
 
 def test_parse_term_list():
     assert parse_term_list('Here:\n```json\n["KV cache", "LoRA", 3, ""]\n```') == ["KV cache", "LoRA"]
