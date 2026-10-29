@@ -1,4 +1,5 @@
 """Quét thuật ngữ AI mới từ abstract arXiv, bảng thuật ngữ D2L và gợi ý của LLM -> data/mined_terms.txt."""
+import hashlib
 import json
 import os
 import re
@@ -6,6 +7,7 @@ import time
 import urllib.error
 import xml.etree.ElementTree as ET
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from aidict.base import load_base
 from aidict.enrich import call_llm
@@ -123,6 +125,26 @@ def _ask(prompt: str, payload, call) -> list[str]:
         return []
 
 
+def ask_all(jobs: list[tuple[str, object]], call, cache_path: str, workers: int = 4) -> list[list[str]]:
+    """Gọi LLM song song cho từng (prompt, payload); kết quả khác rỗng được cache để chạy lại không gọi lại."""
+    key = lambda p, x: hashlib.sha1((p + json.dumps(x, ensure_ascii=False)).encode()).hexdigest()
+    cache = {}
+    if os.path.exists(cache_path):
+        with open(cache_path, encoding="utf-8") as f:
+            cache = dict(json.loads(line) for line in f if line.strip())
+    keys = [key(p, x) for p, x in jobs]
+    todo = {k: j for k, j in zip(keys, jobs) if k not in cache}
+    with ThreadPoolExecutor(workers) as ex, open(cache_path, "a", encoding="utf-8") as f:
+        futs = {ex.submit(_ask, p, x, call): k for k, (p, x) in todo.items()}
+        for n, fut in enumerate(as_completed(futs), 1):
+            if res := fut.result():
+                cache[futs[fut]] = res
+                f.write(json.dumps([futs[fut], res], ensure_ascii=False) + "\n")
+                f.flush()
+            print(f"LLM {n}/{len(todo)}", flush=True)
+    return [cache.get(k, []) for k in keys]
+
+
 def main(per_cat: int = 1500, call=call_llm):
     os.makedirs("data/raw", exist_ok=True)
     texts = []
@@ -150,15 +172,14 @@ def main(per_cat: int = 1500, call=call_llm):
     d2l = [en for en, _ in parse_d2l_glossary(fetch(D2L_URL)) if norm_key(en) not in known]
     hf = {norm_key(t["term"]) for t in parse_hf_glossary(fetch(HF_URL))}
     corpus = "\n".join(texts).lower()
-    ideas = [t for c in CATEGORIES for t in _ask(BRAINSTORM_PROMPT.format(cat=c), [], call)]
+    cache = "data/raw/mine-llm-cache.jsonl"
+    ideas = [t for r in ask_all([(BRAINSTORM_PROMPT.format(cat=c), []) for c in CATEGORIES], call, cache) for t in r]
     ideas = [t for t in dict.fromkeys(ideas) if norm_key(t) not in known and t.lower() in corpus]  # bỏ từ LLM bịa
     cands = list(dict.fromkeys([f"{l} ({a})" for a, l in acr.items()] + d2l + ideas + grams))
     print(f"ứng viên: viết tắt={len(acr)} d2l={len(d2l)} LLM gợi ý={len(ideas)} n-gram={len(grams)} tổng={len(cands)}", flush=True)
 
-    kept = []
-    for i in range(0, len(cands), 150):
-        kept += _ask(FILTER_PROMPT, cands[i:i + 150], call)
-        print(f"lọc {min(i + 150, len(cands))}/{len(cands)}: giữ {len(kept)}", flush=True)
+    kept = [t for r in ask_all([(FILTER_PROMPT, cands[i:i + 150]) for i in range(0, len(cands), 150)], call, cache) for t in r]
+    print(f"lọc xong: giữ {len(kept)}", flush=True)
     lines, seen = [], set(known) | hf
     for t in kept:
         m = re.match(r"(.+?)\s*\(([A-Za-z0-9-]+)\)$", t)

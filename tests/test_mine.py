@@ -1,4 +1,4 @@
-from aidict.mine import acronym_pairs, candidate_ngrams, fetch_arxiv, parse_term_list
+from aidict.mine import acronym_pairs, ask_all, candidate_ngrams, fetch_arxiv, parse_term_list
 from aidict.sources import parse_d2l_glossary, parse_hf_glossary
 
 def test_parse_d2l_glossary():
@@ -47,6 +47,18 @@ def test_fetch_arxiv_backs_off_on_429():
         return atom
     assert fetch_arxiv("cs.CL", 1, page=1, get=get, sleep=sleeps.append) == ["Speculative decoding", "We study it."]
     assert len(calls) == 2 and sleeps[0] >= 60
+
+def test_ask_all_caches_results(tmp_path):
+    import json
+    calls = []
+    def echo(messages):
+        calls.append(1)
+        return json.dumps(json.loads(messages[-1]["content"]))
+    jobs = [("p", ["a"]), ("p", ["b"])]
+    cache = str(tmp_path / "cache.jsonl")
+    assert ask_all(jobs, echo, cache) == [["a"], ["b"]]
+    assert ask_all(jobs, echo, cache) == [["a"], ["b"]]
+    assert len(calls) == 2  # lần chạy sau lấy từ cache, không gọi LLM lại
 
 def test_parse_term_list():
     assert parse_term_list('Here:\n```json\n["KV cache", "LoRA", 3, ""]\n```') == ["KV cache", "LoRA"]
