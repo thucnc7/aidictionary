@@ -1,5 +1,6 @@
 """Thu thập thuật ngữ AI: Google ML Glossary, Wikipedia, cheatsheet Stanford (vi), danh sách thủ công."""
 import json
+import os
 import re
 import urllib.request
 from html.parser import HTMLParser
@@ -13,6 +14,8 @@ CHEAT_NAMES = ["cs-221-logic-models", "cs-229-deep-learning", "cs-229-linear-alg
                "cs-229-machine-learning-tips-and-tricks", "cs-229-probability", "cs-229-supervised-learning",
                "cs-229-unsupervised-learning", "cs-230-convolutional-neural-networks",
                "cs-230-deep-learning-tips-and-tricks", "cs-230-recurrent-neural-networks"]
+HF_URL = "https://raw.githubusercontent.com/huggingface/transformers/main/docs/source/en/glossary.md"
+D2L_URL = "https://raw.githubusercontent.com/aivivn/d2l-vn/master/glossary.md"
 _PAREN = re.compile(r"\s*\(.*\)$")
 
 
@@ -124,15 +127,44 @@ def parse_cheatsheet(md: str) -> list[tuple[str, str]]:
     return [(en.strip(), vi.strip()) for en, vi in pairs if vi.strip()]
 
 
-def load_manual(path: str) -> list[dict]:
+def parse_d2l_glossary(md: str) -> list[tuple[str, str]]:
+    """Bảng thuật ngữ của bản dịch tiếng Việt sách Dive into Deep Learning (| English | Tiếng Việt | …)."""
     out = []
+    for line in md.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0] and cells[1] and cells[0] != "English" and not set(cells[0]) <= set("-: "):
+            out.append((cells[0], cells[1]))
+    return out
+
+
+def parse_hf_glossary(md: str) -> list[dict]:
+    items, cur = [], None
+    for line in md.splitlines():
+        if line.startswith("### "):
+            cur = {"term": line[4:].strip(), "paras": []}
+            items.append(cur)
+        elif line.startswith("#"):
+            cur = None
+        elif cur is not None and line.strip() and not line.lstrip().startswith("<"):
+            cur["paras"].append(line)
+    out = []
+    for i in items:
+        text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", " ".join(i["paras"])).replace("`", "")
+        out.append({"term": i["term"], "definition_en": _norm(text), "tags": [], "source": "huggingface"})
+    return out
+
+
+def load_manual(path: str, source: str = "manual") -> list[dict]:
+    out = []
+    if not os.path.exists(path):
+        return out
     with open(path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
             term, _, hint = line.partition("\t")
-            out.append({"term": term.strip(), "definition_en": hint.strip(), "tags": [], "source": "manual"})
+            out.append({"term": term.strip(), "definition_en": hint.strip(), "tags": [], "source": source})
     return out
 
 
@@ -159,14 +191,18 @@ def merge_terms(lists: list[list[dict]]) -> list[dict]:
 def main():
     g = parse_google(fetch(GOOGLE_URL))
     w = parse_wikipedia(json.loads(fetch(WIKI_URL))["parse"]["text"])
+    h = parse_hf_glossary(fetch(HF_URL))
     m = load_manual("data/manual_terms.txt")
-    pairs = [p for n in CHEAT_NAMES for p in parse_cheatsheet(fetch(CHEAT_URL.format(n)))]
-    terms = merge_terms([g, w, m])
+    x = load_manual("data/mined_terms.txt", source="mined")
+    # bảng thuật ngữ D2L tiếng Việt đứng trước để được ưu tiên làm cách dịch tham chiếu
+    pairs = parse_d2l_glossary(fetch(D2L_URL)) + [p for n in CHEAT_NAMES for p in parse_cheatsheet(fetch(CHEAT_URL.format(n)))]
+    terms = merge_terms([g, w, h, m, x])
     with open("data/terms.jsonl", "w", encoding="utf-8") as f:
         f.writelines(json.dumps(t, ensure_ascii=False) + "\n" for t in terms)
     with open("data/cheatsheet_pairs.jsonl", "w", encoding="utf-8") as f:
         f.writelines(json.dumps(list(p), ensure_ascii=False) + "\n" for p in pairs)
-    print(f"google={len(g)} wikipedia={len(w)} manual={len(m)} merged={len(terms)} pairs={len(pairs)}")
+    print(f"google={len(g)} wikipedia={len(w)} huggingface={len(h)} manual={len(m)} mined={len(x)} "
+          f"merged={len(terms)} pairs={len(pairs)}")
 
 
 if __name__ == "__main__":

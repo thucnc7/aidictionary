@@ -1,0 +1,40 @@
+from aidict.mine import acronym_pairs, candidate_ngrams, parse_term_list
+from aidict.sources import parse_d2l_glossary, parse_hf_glossary
+
+def test_parse_d2l_glossary():
+    md = ("## A\n| English | Tiếng Việt | Thảo luận tại |\n|---|---|---|\n"
+          "| accuracy                | độ chính xác  |          |\n"
+          "| adversarial learning    | học đối kháng | [https://git.io/x](https://git.io/x) |\n")
+    assert parse_d2l_glossary(md) == [("accuracy", "độ chính xác"), ("adversarial learning", "học đối kháng")]
+
+def test_parse_hf_glossary():
+    md = ("# Glossary\n\nIntro text.\n\n## A\n\n### attention mask\n\nThe attention mask is an optional argument.\n\n"
+          '<Youtube id="M6adb1j2jPI"/>\n\nIt tells the model which [tokens](#token) to attend to.\n\n'
+          "### connectionist temporal classification (CTC)\n\nAn algorithm that `aligns` sequences.\n")
+    assert parse_hf_glossary(md) == [
+        {"term": "attention mask", "definition_en": "The attention mask is an optional argument. It tells the model which tokens to attend to.",
+         "tags": [], "source": "huggingface"},
+        {"term": "connectionist temporal classification (CTC)", "definition_en": "An algorithm that aligns sequences.",
+         "tags": [], "source": "huggingface"}]
+
+def test_acronym_pairs():
+    texts = ["We study retrieval-augmented generation (RAG) for QA.",
+             "Large language models (LLMs) are strong. Mixture-of-Experts (MoE) layers route tokens.",
+             "Our method (OURS) beats the baseline."]
+    got = acronym_pairs(texts)
+    assert got["RAG"] == "retrieval-augmented generation"
+    assert got["LLM"] == "large language model"
+    assert got["MoE"] == "mixture-of-experts"
+    assert "OURS" not in got  # chữ cái đầu không khớp
+
+def test_candidate_ngrams():
+    texts = ["We apply speculative decoding to speed up inference."] * 4 + ["The results of speculative decoding."]
+    got = dict(candidate_ngrams(texts, known={"inference"}, base_words={"speculative", "decoding", "speed"}, min_df=4))
+    assert got["speculative decoding"] == 5
+    assert "inference" not in got        # đã có trong từ điển AI
+    assert "speculative" not in got      # từ đơn có sẵn trong từ điển nền
+    assert not any(k.startswith(("we ", "the ")) or k.endswith(" to") for k in got)
+
+def test_parse_term_list():
+    assert parse_term_list('Here:\n```json\n["KV cache", "LoRA", 3, ""]\n```') == ["KV cache", "LoRA"]
+    assert parse_term_list("không có") == []
