@@ -101,10 +101,10 @@ def fetch_arxiv(cat: str, total: int, page: int = 200, get=fetch, sleep=time.sle
         for attempt in range(6):
             try:
                 entries = ET.fromstring(get(ARXIV.format(cat=cat, start=start, n=page))).findall("a:entry", ns)
-            except urllib.error.HTTPError as e:
-                if e.code not in (429, 503):
+            except (urllib.error.URLError, TimeoutError) as e:
+                if isinstance(e, urllib.error.HTTPError) and e.code not in (429, 503):
                     raise
-                sleep(60 * 2 ** attempt)  # bị chặn tạm vì gọi dày: chờ 1, 2, 4… phút
+                sleep(60 * 2 ** attempt)  # bị chặn tạm / quá tải: chờ 1, 2, 4… phút
                 continue
             if entries:
                 break
