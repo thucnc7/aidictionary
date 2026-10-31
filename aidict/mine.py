@@ -125,6 +125,14 @@ def _ask(prompt: str, payload, call) -> list[str]:
         return []
 
 
+def stable_batches(cands: list[str], n: int) -> list[list[str]]:
+    """Chia ứng viên vào n nhóm cố định theo hash: thêm/bớt một ứng viên chỉ đổi đúng nhóm của nó (giữ cache LLM)."""
+    buckets = [[] for _ in range(n)]
+    for c in sorted(set(cands)):
+        buckets[int(hashlib.sha1(c.encode()).hexdigest(), 16) % n].append(c)
+    return buckets
+
+
 def ask_all(jobs: list[tuple[str, object]], call, cache_path: str, workers: int = 4) -> list[list[str]]:
     """Gọi LLM song song cho từng (prompt, payload); kết quả khác rỗng được cache để chạy lại không gọi lại."""
     key = lambda p, x: hashlib.sha1((p + json.dumps(x, ensure_ascii=False)).encode()).hexdigest()
@@ -161,7 +169,11 @@ def main(per_cat: int = 1500, call=call_llm):
     with open("data/terms.jsonl", encoding="utf-8") as f:
         terms = [json.loads(line) for line in f]
     with open("data/enriched.jsonl", encoding="utf-8") as f:
-        aliases = [a for line in f for a in json.loads(line)["aliases"]]
+        enriched = [json.loads(line) for line in f]
+    aliases = [a for e in enriched for a in e["aliases"]]
+    # dạng đầy đủ của viết tắt (SFT -> supervised fine-tuning) chỉ loại ở bước cuối,
+    # để danh sách ứng viên (và cache LLM theo từng lô) không đổi
+    expansions = {norm_key(e["expansion"]) for e in enriched if e["expansion"]}
     known = {norm_key(t["term"]) for t in terms} | {norm_key(a) for a in aliases}
     known |= {k[:-1] for k in known if k.endswith("s")} | {k + "s" for k in known}
     base_words = {w.lower() for w in load_base("data/raw/vi-extract.jsonl.gz")}
@@ -178,9 +190,10 @@ def main(per_cat: int = 1500, call=call_llm):
     cands = list(dict.fromkeys([f"{l} ({a})" for a, l in acr.items()] + d2l + ideas + grams))
     print(f"ứng viên: viết tắt={len(acr)} d2l={len(d2l)} LLM gợi ý={len(ideas)} n-gram={len(grams)} tổng={len(cands)}", flush=True)
 
-    kept = [t for r in ask_all([(FILTER_PROMPT, cands[i:i + 150]) for i in range(0, len(cands), 150)], call, cache) for t in r]
+    batches = [b for b in stable_batches(cands, max(1, len(cands) // 150)) if b]
+    kept = [t for r in ask_all([(FILTER_PROMPT, b) for b in batches], call, cache, workers=2) for t in r]
     print(f"lọc xong: giữ {len(kept)}", flush=True)
-    lines, seen = [], set(known) | hf
+    lines, seen = [], set(known) | hf | expansions
     for t in kept:
         m = re.match(r"(.+?)\s*\(([A-Za-z0-9-]+)\)$", t)
         term, hint = (m.group(1), f"Also abbreviated as {m.group(2)}.") if m else (t, "")

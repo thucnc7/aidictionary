@@ -1,4 +1,4 @@
-from aidict.mine import acronym_pairs, ask_all, candidate_ngrams, fetch_arxiv, parse_term_list
+from aidict.mine import acronym_pairs, ask_all, candidate_ngrams, fetch_arxiv, parse_term_list, stable_batches
 from aidict.sources import parse_d2l_glossary, parse_hf_glossary
 
 def test_parse_d2l_glossary():
@@ -59,6 +59,13 @@ def test_ask_all_caches_results(tmp_path):
     assert ask_all(jobs, echo, cache) == [["a"], ["b"]]
     assert ask_all(jobs, echo, cache) == [["a"], ["b"]]
     assert len(calls) == 2  # lần chạy sau lấy từ cache, không gọi LLM lại
+
+def test_stable_batches_change_only_one_bucket():
+    cands = [f"term {i}" for i in range(300)]
+    before = stable_batches(cands, 20)
+    after = stable_batches(cands + ["brand new term"], 20)
+    assert sum(b != a for b, a in zip(before, after)) == 1
+    assert sorted(t for b in before for t in b) == sorted(cands)
 
 def test_parse_term_list():
     assert parse_term_list('Here:\n```json\n["KV cache", "LoRA", 3, ""]\n```') == ["KV cache", "LoRA"]
