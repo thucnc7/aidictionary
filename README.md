@@ -163,13 +163,7 @@ Một số thuật ngữ có mặt ở nhiều nguồn, nên sau khi gộp còn 
 
 ## Chất lượng bản dịch và góp ý
 
-Phần tiếng Việt (bản dịch, giải thích, ví dụ) do LLM viết:
-
-| Thuật ngữ | Model | Ghi chú |
-|---|---|---|
-| 776 thuật ngữ đầu | Gemini 3.8 Flash | |
-| 350 thuật ngữ tiếp theo | Nemotron 3 Ultra | Chất lượng thấp hơn, cần rà lại (dòng 777–1126 trong `data/enriched.jsonl`) |
-| 884 thuật ngữ mới từ paper và sách | Claude Sonnet 5.5 | |
+Phần tiếng Việt (bản dịch, giải thích, ví dụ) do LLM viết: Gemini 3.8 Flash dịch 776 thuật ngữ, Claude Sonnet 5.5 dịch 1.234 thuật ngữ còn lại. LLM vẫn có thể sai, nhất là với các thuật ngữ ít gặp.
 
 Nếu thấy bản dịch sai hoặc thiếu một thuật ngữ quan trọng, bạn có thể:
 
