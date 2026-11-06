@@ -1,4 +1,4 @@
-from aidict.mine import acronym_pairs, ask_all, candidate_ngrams, fetch_arxiv, parse_term_list, stable_batches
+from aidict.mine import acronym_pairs, ask_all, candidate_ngrams, fetch_arxiv, parse_term_list, singular, stable_batches
 from aidict.sources import parse_d2l_glossary, parse_hf_glossary
 
 def test_parse_d2l_glossary():
@@ -70,3 +70,11 @@ def test_stable_batches_change_only_one_bucket():
 def test_parse_term_list():
     assert parse_term_list('Here:\n```json\n["KV cache", "LoRA", 3, ""]\n```') == ["KV cache", "LoRA"]
     assert parse_term_list("không có") == []
+
+def test_singular_headwords():
+    assert singular("verifiers") == "verifier"
+    assert singular("coding agents") == "coding agent"
+    assert singular("frontier LLMs") == "frontier LLM"
+    assert singular("internal representations") == "internal representation"
+    for keep in ("time series", "physics", "loss", "training data", "bias", "Qwen3-VL", "ethics"):
+        assert singular(keep) == keep

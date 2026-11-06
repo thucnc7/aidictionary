@@ -9,6 +9,8 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+from lemminflect import getLemma
+
 from aidict.base import load_base
 from aidict.enrich import call_llm
 from aidict.sources import D2L_URL, HF_URL, fetch, norm_key, parse_d2l_glossary, parse_hf_glossary
@@ -125,6 +127,16 @@ def _ask(prompt: str, payload, call) -> list[str]:
         return []
 
 
+def singular(term: str) -> str:
+    """Đưa từ cuối về số ít để tra đúng đầu mục (coding agents -> coding agent, LLMs -> LLM)."""
+    head, _, last = term.rpartition(" ")
+    if re.fullmatch(r"[A-Z][A-Za-z0-9]*[A-Z]s", last):
+        last = last[:-1]
+    elif last.islower() and last.endswith("s"):
+        last = getLemma(last, upos="NOUN")[0]
+    return f"{head} {last}" if head else last
+
+
 def stable_batches(cands: list[str], n: int) -> list[list[str]]:
     """Chia ứng viên vào n nhóm cố định theo hash: thêm/bớt một ứng viên chỉ đổi đúng nhóm của nó (giữ cache LLM)."""
     buckets = [[] for _ in range(n)]
@@ -197,6 +209,7 @@ def main(per_cat: int = 1500, call=call_llm):
     for t in kept:
         m = re.match(r"(.+?)\s*\(([A-Za-z0-9-]+)\)$", t)
         term, hint = (m.group(1), f"Also abbreviated as {m.group(2)}.") if m else (t, "")
+        term = singular(term)
         if norm_key(term) not in seen:
             seen.add(norm_key(term))
             lines.append(f"{term}\t{hint}" if hint else term)

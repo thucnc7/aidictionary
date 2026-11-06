@@ -1,390 +1,627 @@
 # Thuật ngữ quét từ arXiv, bảng thuật ngữ D2L và gợi ý LLM (python -m aidict.mine). Sửa tay thoải mái.
-(statistical) inference
+(model) checkpoint
+3D Gaussian splatting
+absolute percentage error	Also abbreviated as APE.
 abstract syntax tree	Also abbreviated as AST.
+action model
+activation
+activation patching
 activation quantization
+activation steering
+actor-critic
+adapter
 adaptive computation
 adjusted rand index	Also abbreviated as ARI.
 advantage estimation
+adversarial
 adversarial learning
+adversarial robustness
+affine
 agent benchmark
 agent harness
+agent memory
+agentic ai
+agentic framework
 agentic RAG
 agentic reinforcement learning
+agentic system
+AI agent
+alfworld
+alignment
 alignment tax
+all-to-all
 AlpacaEval
-alzheimer's disease neuroimaging initiative	Also abbreviated as ADNI.
 anchor box
 any-to-any generation
 approximate inference
-Arena-Hard
+arena-hard
 association rule mining	Also abbreviated as ARM.
+attack success rate
+attention head
+attention matching	Also abbreviated as AM.
+attention sink
+autism spectrum disorder	Also abbreviated as ASD.
 automatic differentiation
 autoregressive
+auxiliary-loss-free load balancing
 average pooling
 average precision	Also abbreviated as AP.
-avoidable bias
 AWQ
+balanced accuracy
 bandit
+batch invariance	Also abbreviated as BI.
+Bayes-consistent tempering	Also abbreviated as BCT.
+bayesian
 beam search
 behavioral cloning	Also abbreviated as BC.
 belief-propagation	Also abbreviated as BP.
 benchmark
+benchmark dataset
 benchmark leakage
 best-of-n	Also abbreviated as BoN.
-best-of-N sampling
+best-of-n sampling
+bfloat16
 bi-encoder
 bidirectional recurrent neural network
-bird's-eye-view	Also abbreviated as BEV.
+binomial distribution
+bird's-eye view	Also abbreviated as BEV.
+black-box
+bootstrap confidence interval
 Bradley-Terry model
+calibration
+calibration error
+camera pose
 camouflaged object detection	Also abbreviated as COD.
 capacitated vehicle routing problem	Also abbreviated as CVRP.
+captioning
+catastrophic forgetting
 causality
+central target word
 chain rule
+chain-of-dynamic	Also abbreviated as CoD.
 chain-of-thought faithfulness
+channel state information	Also abbreviated as CSI.
 character error rate	Also abbreviated as CER.
 chart understanding
 chatbot arena
+cifar-10
+cifar-100
+circuit
 class activation map	Also abbreviated as CAM.
+class imbalance
 class-incremental learning	Also abbreviated as CIL.
+classification accuracy
 classifier-free guidance	Also abbreviated as CFG.
-Claude
+Claude Code
+claude opus
 click-through rate	Also abbreviated as CTR.
 closed-form solution
+closed-source
 cloud computing
+coarse-to-fine
+code generation
+codebook
+coding agent
 cognitive diagnosis model	Also abbreviated as CDM.
 ColBERT
 combinatory categorial grammar	Also abbreviated as CCG.
+command-line interface	Also abbreviated as CLI.
 computational graph
 compute-optimal
-computer use
 computer-use agent	Also abbreviated as CUA.
 computerized adaptive testing	Also abbreviated as CAT.
-concatenate
 concept bottleneck model	Also abbreviated as CBM.
 concept embedding model	Also abbreviated as CEM.
-conditional average treatment effects	Also abbreviated as CATE.
+conditional average treatment effect	Also abbreviated as CATE.
 conditional distribution
 conditional flow matching
+conditional flow model	Also abbreviated as CFM.
+conditional probability distribution	Also abbreviated as CPD.
 confidence interval
-confidence level
+conformal prediction
 consistency model
 constrained markov decision process	Also abbreviated as CMDP.
 content loss (in style transfer)
 context compaction
 context compression
+context-aware decoding	Also abbreviated as CAD.
+continual active learning	Also abbreviated as CAL.
 continued pre-training	Also abbreviated as CPT.
 continuous batching
 continuous ranked probability score	Also abbreviated as CRPS.
+contrastive language-image pretraining
+contrastive learning
 contrastive pretraining
 convex combination
 convolutional block attention module	Also abbreviated as CBAM.
 convolutional recurrent neural network	Also abbreviated as CRNN.
 coreference resolution
+coreset selection
 corpus
 corpus poisoning
 correlation coefficient
 cost function
+cost-to-go	Also abbreviated as CTG.
 counterfactual
+counterfactual test-time augmentation	Also abbreviated as CTTA.
+courant-friedrichs-lewy	Also abbreviated as CFL.
 covariate
 credit assignment
-crop	Also abbreviated as image.
 cross correlation
 cross entropy
 cross validation
+cross-attention
+cross-domain
 cross-encoder
+cross-lingual
 cross-modal
+crystal structure prediction	Also abbreviated as CSP.
+cuda graph
+d gaussian splatting
+data attribution
+data consistency	Also abbreviated as DC.
 data contamination
 data mismatch
-decision transformer	Also abbreviated as DT.
+data mixture
+data poisoning
+data selection
+data valuation
+decentralized learning
+decision transformer
+decision-making
+decision-pretrained transformer	Also abbreviated as DPT.
+decontamination
+decoupling
+deep fusion memory	Also abbreviated as DFM.
+deep learning model
 deep reinforcement learning	Also abbreviated as DRL.
-deep research
-deep research agent
+deepseek
 deferred initialization
+delta rule
+denoiser
+denoising step
 dense retrieval
 densely connected network
-dev set
+depth estimation
 development set
-dice score coefficients	Also abbreviated as DSC.
-differentiable
-diffusion language model	Also abbreviated as DLM.
+dice score coefficient	Also abbreviated as DSC.
+differential attention
+difficulty-aware prompt sampling	Also abbreviated as DAPS.
+diffusion language model
 diffusion policy
 diffusion transformer
-dimensionality
+diffusion vision-language model	Also abbreviated as DVLM.
 directed acyclic graph	Also abbreviated as DAG.
+directed cyclic graph	Also abbreviated as DCG.
 discrete cosine transform	Also abbreviated as DCT.
 discrete diffusion
 discrete flow matching
+distractor
 distribution matching distillation	Also abbreviated as DMD.
+distribution shift
 distributional reinforcement learning
 distributionally robust optimization	Also abbreviated as DRO.
 document understanding
 domain adaptation
-domain generalization	Also abbreviated as DG.
+domain generalization
 domain-specific language	Also abbreviated as DSL.
+doppler velocity log	Also abbreviated as DVL.
 dot product
 doubly robust	Also abbreviated as DR.
-downsample
+doubly robust estimation
 downstream task
 draft model
-dynamic benchmark
+dynamical system
+early fault-tolerant quantum computing	Also abbreviated as EFTQC.
 early fusion
-edge (in computer vision)
-edge detector
+earth observation	Also abbreviated as EO.
 effect size
 eigen-decomposition
 eigenvalue
 eigenvector
 elastic weight consolidation	Also abbreviated as EWC.
-elementwise
+electronic health record	Also abbreviated as EHR.
+emotion recognition
 encoder-decoder architecture
 end-point error	Also abbreviated as EPE.
 end-to-end	Also abbreviated as E2E.
 entity linking	Also abbreviated as EL.
 entity resolution	Also abbreviated as ER.
-error analysis
 error rate
 evaluation harness
+execution feedback
 expectation
-expected calibration error	Also abbreviated as ECE.
+expected calibration error
+explainability
 explicit feedback
 exploration bonus
 exponential distribution
 exponential moving average	Also abbreviated as EMA.
 exponential weighted moving average
-eyeball dev set
 face recognition	Also abbreviated as FR.
+failure attribution	Also abbreviated as FA.
+failure mode
+faithfulness
+false discovery rate
 feature map (in CNN)
 federated unlearning	Also abbreviated as FU.
+feed-forward
 feed-forward network	Also abbreviated as FNN.
+few-shot
 few-step generation
-flatten
+finite-sample
 flow matching
+flow-matching
 forward pass
-frozen weight (freeze weight)
+fourier transform	Also abbreviated as FT.
+fp8 training
+frontier LLM
+fréchet distance	Also abbreviated as FD.
+full fine-tuning
 fully convolutional network
 fully-connected
 G-Eval
 gated cross-attention
 gated recurrent unit
 gauss-newton	Also abbreviated as GN.
+Gaussian
 Gaussian distribution
 Gaussian noise
 gaussian process	Also abbreviated as GP.
+Gaussian splatting
+general dynamic equation	Also abbreviated as GDE.
 generalization gap
 generalization loss
 generalized additive model	Also abbreviated as GAM.
 generalized category discovery	Also abbreviated as GCD.
+generative modeling
 generative recommendation	Also abbreviated as GR.
-global maximum
+generative refinement network	Also abbreviated as GRN.
+genome-wide association study	Also abbreviated as GWAS.
+geometric confusion score	Also abbreviated as GCS.
+geometric-invariance fine-tuning	Also abbreviated as GIFT.
+global interpreter lock
 global minimum
 GPQA
+GPT-4o
 GPTQ
+gradient-based
+Gram-Schmidt	Also abbreviated as GS.
 graph foundation model	Also abbreviated as GFM.
-graph neural network	Also abbreviated as GNN.
+graph neural network
 graphical model
 graphical user interface	Also abbreviated as GUI.
 greedy algorithm
 greedy search
+grokking
 gromov-wasserstein	Also abbreviated as GW.
+ground-truth
+group relative policy
 group relative policy optimization	Also abbreviated as GRPO.
-groups of picture	Also abbreviated as GOP.
+group-relative
 GRPO
+GSM8K
 GUI agent
+hallucination detection
 hallucination rate
-hand-engineering
+Hamiltonian Monte Carlo
 handwritten character recognition	Also abbreviated as HCR.
 handwritten text recognition	Also abbreviated as HTR.
 hard negative
+held-out
 held-out set
 hidden markov model	Also abbreviated as HMM.
 hidden state
+hidden state variable
 hidden unit
+hidden variable
 HNSW
+Hugging Face
 human activity recognition	Also abbreviated as HAR.
-human-level performance
+human feedback
 human-object interaction	Also abbreviated as HOI.
 human-scene interaction	Also abbreviated as HSI.
 hybrid search
 hypothesis test
-ill-conditioned
+image captioning
+image editing
+image generation
 image quality assessment	Also abbreviated as IQA.
 image segmentation
 image tokenizer
+image-text alignment
 image-to-video	Also abbreviated as I2V.
+ImageNet
 imitation learning	Also abbreviated as IL.
 implicit feedback
 implicit neural representation	Also abbreviated as INR.
+in-context
 in-context reinforcement learning
-in-distribution	Also abbreviated as ID.
+in-distribution
+in-domain
 independence assumption
 indicator variable
 indirect object identification	Also abbreviated as IOI.
+indirect prompt injection
 inductive bias
+inference cost
+inference latency
+inference time
+inference-time
 inference-time scaling
-initializer
+influence function
 instance segmentation
 instruction following	Also abbreviated as IF.
+instruction-following
+instruction-tuned
 inter-token latency
 internal covariate shift
+internal representation
+internet protocol	Also abbreviated as IP.
+isometric centroid-encoder	Also abbreviated as ICE.
+JEPA
 joint distribution
+joint training
+joint-embedding
 joint-embedding predictive architecture	Also abbreviated as JEPA.
 kernel fusion
 key-value	Also abbreviated as KV.
-KL penalty
+KL divergence
+kl penalty
 knapsack problem	Also abbreviated as KP.
-knowledge graph	Also abbreviated as KG.
+knowledge graph
 knowledge graph embedding	Also abbreviated as KGE.
 knowledge graph question answering	Also abbreviated as KGQA.
 knowledge tracing	Also abbreviated as KT.
 kolmogorov-arnold network	Also abbreviated as KAN.
+Krippendorff's alpha
 kullback-leibler	Also abbreviated as KL.
 label smoothing
+language agent
+language model agent
+language modeling
 large audio-language model	Also abbreviated as LALM.
 large multimodal model	Also abbreviated as LMM.
 large vision-language model	Also abbreviated as LVLM.
 late interaction
 latent reasoning
 latent variable
-law of large numbers
+latent world model	Also abbreviated as LWM.
+law of large number
+leaderboard
 learned image compression	Also abbreviated as LIC.
-learning algorithm
-learning curve
+learned representation
 learning rate schedule
+learning with verifiable reward
 leave-one-subject-out	Also abbreviated as LOSO.
+level-of-detail	Also abbreviated as LoD.
+LIBERO
 line search
-linear algebra
-linear dependence
+linear attention
 linear discriminant analysis	Also abbreviated as LDA.
 linear independence
+linear probe
 linear programming
+LLaMA-3
+LLM agent
+LLM inference
+LLM judge
 local maximum
 local minimum
+log acceptance	Also abbreviated as LA.
 log-likelihood function
-long-context evaluation
+long-context
+long-horizon
+long-horizon task
+long-tailed
+long-term memory
 loss landscape
+low earth orbit	Also abbreviated as LEO.
+low-bit
+low-fidelity	Also abbreviated as LF.
 low-light image enhancement	Also abbreviated as LLIE.
+low-rank
+low-resource
 low-resource language	Also abbreviated as LRL.
-machine learning engineering	Also abbreviated as MLE.
-machine unlearning	Also abbreviated as MU.
+lower bound
+LPIPS
+machine unlearning
+macro-F1
+mahalanobis distance	Also abbreviated as MD.
 majority voting
+mamba
 marginalization
-mask (in computer vision)
+Markov
 masked diffusion
 masked diffusion language model	Also abbreviated as MDLM.
 masked diffusion model	Also abbreviated as MDM.
-masked image modeling	Also abbreviated as MIM.
-masked multi-head attention
+masked image modeling
+masked multi-head attention layer
+mathematical reasoning
 max pooling
 maximum likelihood estimator
 maximum softmax probability	Also abbreviated as MSP.
 mean opinion score	Also abbreviated as MOS.
 mean per-joint position error	Also abbreviated as MPJPE.
 mean-field game	Also abbreviated as MFG.
+membership inference
 memory cell
-minimizer
+metacognition
+microscaling format
+minimax
 minorization-maximization	Also abbreviated as MM.
-misclassified
-mislabeled
+miou
+misalignment
 mixed error rate	Also abbreviated as MER.
-mixture-of-experts
+mixed integer programming	Also abbreviated as MIP.
+mixed-integer linear program	Also abbreviated as MILP.
+mixture-of-expert	Also abbreviated as MoE.
+mixture-of-transformer	Also abbreviated as MoT.
+MLLM
 modality fusion
 model collapse
-model family
+model flops utilization
 model merging
+model organism
+model selection
+model watermarking
+model weight
+model-agnostic
 model-based reinforcement learning
-moment
+modern standard arabic	Also abbreviated as MSA.
+monocular depth
+monosemanticity
+monte carlo
 MT-Bench
-multi-agent reinforcement learning	Also abbreviated as MARL.
+multi-agent
+multi-agent reinforcement learning
 multi-armed bandit
+multi-head latent attention
+multi-hop
 multi-object tracking	Also abbreviated as MOT.
+multi-teacher
+multi-token
 multi-token prediction	Also abbreviated as MTP.
-multi-view
+multimodal agent
+multimodal embedding
 multimodal large language model	Also abbreviated as MLLM.
 multimodal RAG
+multimodal reasoning
 multinomial distribution
 multiple instance learning	Also abbreviated as MIL.
+multiscale
+multiscale policy optimization	Also abbreviated as MPO.
+Muon
 mutual-information	Also abbreviated as MI.
 named entity recognition
 native multimodal model
 natural language inference	Also abbreviated as NLI.
 needle-in-a-haystack
-negative log-likelihood	Also abbreviated as NLL.
+negative log-likelihood
 negative sample
 network in network
 neural collapse	Also abbreviated as NC.
+neural radiance field
 neural style transfer
+neural tangent kernel
+neuro-symbolic
+neuromorphic continual learning	Also abbreviated as NCL.
+next-token prediction
 NF4 quantization
 noise injection
 noise schedule
 noisy intermediate-scale quantum	Also abbreviated as NISQ.
 non-maximum suppression
+non-squashing activation function
 nonnegative matrix factorization	Also abbreviated as NMF.
 nonparametric
-nonstationary distribution
-norm
 normal distribution
-normalize
 novel view synthesis	Also abbreviated as NVS.
+novel-view
 null hypothesis
-number of function evaluations	Also abbreviated as NFE.
-numerical overflow
-numerical underflow
+number of function evaluation	Also abbreviated as NFE.
+object detection
 object hallucination
+object recognition
+object-centric
+off-policy
 off-policy evaluation	Also abbreviated as OPE.
+off-the-shelf
 offline reinforcement learning
 offline-to-online reinforcement learning
-on-policy distillation	Also abbreviated as OPD.
-one-tailed test
+omni language model	Also abbreviated as OLM.
+on-device
+on-policy
+on-policy data
+on-policy distillation
+on-policy self-distillation	Also abbreviated as OPSD.
+on-policy transition distillation	Also abbreviated as OPTD.
+one-sided test
+open weight
+open-source
+open-vocabulary
 open-vocabulary detection
 open-weight
 optical character recognition	Also abbreviated as OCR.
+optical flow
 optimal transport	Also abbreviated as OT.
+optimization landscape
+orthonormal
 out-of-distribution	Also abbreviated as OOD.
+out-of-distribution detection
 outlier channel
 overthinking
 p-value
 padding
+pairwise comparison
 panoptic quality	Also abbreviated as PQ.
+panoptic segmentation
+parameter space
+parameter-efficient
+pareto
+Pareto frontier
 part of speech	Also abbreviated as POS.
+partial differential equation	Also abbreviated as PDE.
 partition function
 patch embedding
-patchify
 pedestrian attribute recognition	Also abbreviated as PAR.
 persistent homology	Also abbreviated as PH.
 personally identifiable information	Also abbreviated as PII.
 perspective-n-point	Also abbreviated as PnP.
-physics-informed neural network	Also abbreviated as PINN.
+perturbation
+photorealistic
+physically based rendering	Also abbreviated as PBR.
+physics-informed neural network
 plan-and-execute
 planning domain definition language	Also abbreviated as PDDL.
-point cloud	Also abbreviated as PC.
+plug-and-play
+point cloud
+policy learning
+policy optimization
+polysemanticity
+pose estimation
 position-wise feed-forward network
-positive sample
+positive sample/example
 post-hoc
-post-training quantization	Also abbreviated as PTQ.
+post-trained
+post-training
+post-training quantization
 posterior
-pre-train
 preconditioning
+preference optimization
+preference pair
+prefill
 prefix caching
+prior knowledge
 probability flow ODE
 process reward model
-prognostics and health management	Also abbreviated as PHM.
 projection layer
 prompt compression
+prototype
+PSNR
 Q-Former
-QK-norm
+qk-norm
+quadratic programming
 quality estimation	Also abbreviated as QE.
 quantization-aware training	Also abbreviated as QAT.
 quantized KV cache
-query
 query rewriting
 question answering
 question-answering	Also abbreviated as QA.
+Qwen
+Qwen2
 Qwen3
-random projections	Also abbreviated as RP.
+Qwen3-8B
+Qwen3-VL
+random projection	Also abbreviated as RP.
 random variable
-reasoning effort
+RDMA
+readout
+reasoning step
+reasoning trace
+reasoning trajectory
 receiver operating characteristic	Also abbreviated as ROC.
-receptive field
+receptive field (in CNN)
 rectified flow
 reference policy
 reference-free evaluation
@@ -393,53 +630,95 @@ referring-expression segmentation	Also abbreviated as RES.
 reflexion
 reflow
 region of interest
-region proposal
 regions of interest	Also abbreviated as ROI.
 regressor
-reinforcement learning with verifiable rewards	Also abbreviated as RLVR.
+reinforcement learning with verifiable reward
+rejection sampling
+relative policy optimization
+remote sensing
+renormalization group	Also abbreviated as RG.
 reparameterization
-reproducibility
-reproducing kernel hilbert space	Also abbreviated as RKHS.
+report generation
+representation engineering
+representation space
+reproducing kernel Hilbert space	Also abbreviated as RKHS.
 reset gate
 residual network
 retrieval head
+retrieval-augmented
+retrospective self-distillation	Also abbreviated as RSD.
 reward function
-reward model	Also abbreviated as RM.
+reward model
+ring attention
+RLVR
+robot manipulation
+robotic manipulation
+robust
+root-mean-square	Also abbreviated as RMS.
+rotating feature	Also abbreviated as RF.
+rubric
+RWKV
+sample size
 sampling without replacement
-satisfiability-modulo-theories	Also abbreviated as SMT.
+sandbagging
+satisfiability-modulo-theory	Also abbreviated as SMT.
 satisficing metric
-scaffolding
+scalability
+scanning electron microscopy	Also abbreviated as SEM.
+scene understanding
+scheming
 Schrödinger bridge
+score matching
 scoring function
-self-consistency	Also abbreviated as SC.
+second-order
+segment anything model
+selective scan
+self-consistency
+self-distillation
+self-evolving
+self-instruct
 self-play
 self-refinement
 self-supervised
+semantic alignment
 semantic role labeling
 semantic search
 semantic segmentation
+semi-supervised
 sequence to sequence
 sequence-parallel	Also abbreviated as SP.
 sequential monte carlo	Also abbreviated as SMC.
+serialized output training	Also abbreviated as SOT.
+shared expert
 sharpness-aware minimization	Also abbreviated as SAM.
+shuffled differential privacy	Also abbreviated as SDP.
+signal-aware adaptive fusion	Also abbreviated as SAAF.
+signal-to-noise ratio	Also abbreviated as SNR.
 signed distance field	Also abbreviated as SDF.
 significance test
 simultaneous localization and mapping	Also abbreviated as SLAM.
-small language model	Also abbreviated as SLM.
+single-turn
+small language model
 soft actor-critic	Also abbreviated as SAC.
-source distribution
-spatial grounding	Also abbreviated as SG.
+SOTA
+sparse attention
+spatial reasoning
+spatiotemporal
 speech translation	Also abbreviated as ST.
+speedup
 SPLADE
+splatting
 squashing function
-standard deviation
-standardize
+ssim
+state space
+state space model
 state-of-the-art	Also abbreviated as SOTA.
+state-space
 stationary point
-statistical inference
 statistical power
 statistical significance
 steering vector	Also abbreviated as SV.
+stochastic differential equation	Also abbreviated as SDE.
 stochastic interpolant
 stop word
 straight-through estimator	Also abbreviated as STE.
@@ -448,78 +727,129 @@ structural causal model	Also abbreviated as SCM.
 structural similarity index measure	Also abbreviated as SSIM.
 structure-from-motion	Also abbreviated as SfM.
 structured output
+structured query language	Also abbreviated as SQL.
 structured sparsity
-style loss
+style loss (in style transfer)
 success rate
 successive convex approximation	Also abbreviated as SCA.
-super-resolution	Also abbreviated as SR.
+sum of squared distance	Also abbreviated as SSD.
+sum-of-square	Also abbreviated as SOS.
+super-resolution
+superposition
+supervised
 surprisal
 surrogate objective
-SWE-bench
+swe-bench
+sycophancy
 synthetic aperture radar	Also abbreviated as SAR.
 system 2 reasoning
-target distribution
+tabular foundation model	Also abbreviated as TFM.
+target model
 target registration error	Also abbreviated as TRE.
 target speaker extraction	Also abbreviated as TSE.
+task success
+task-agnostic
+task-specific
 Taylor expansion
 temporal attention
+temporal consistency
 temporal grounding	Also abbreviated as TG.
 temporal-difference	Also abbreviated as TD.
-tensor contraction
+tensor core
 terminal-bench	Also abbreviated as TB.
 test statistic
-test-time adaptation	Also abbreviated as TTA.
-text-to-image	Also abbreviated as T2I.
+test time
+test-time
+test-time adaptation
+test-time scaling
+text generation
+text-only
+text-to-image
+text-to-image generation
 text-to-speech	Also abbreviated as TTS.
 text-to-video
-theory-of-mind	Also abbreviated as ToM.
+the cancer imaging archive	Also abbreviated as TCIA.
+theory of mind	Also abbreviated as ToM.
 thinking budget
+time series
+time series anomaly detection	Also abbreviated as TSAD.
+time series forecasting	Also abbreviated as TSF.
+time series foundation model	Also abbreviated as TSFM.
+time-sery
 time-to-first-token	Also abbreviated as TTFT.
+titan
 token merging
+token pruning
+tokenization
+tool call
 tool-integrated reasoning	Also abbreviated as TIR.
+top-1 accuracy
+topology optimization	Also abbreviated as TO.
 total variation
 total variation denoising
-transcription
-transition layer
+trainable weight averaging	Also abbreviated as TWA.
+training objective
+training-free
+trajectory-level
+transformer engine
 transposed convolution
 truncated backpropagation through time
 tsetlin automaton	Also abbreviated as TA.
-tsetlin machine	Also abbreviated as TM.
-two-tailed test
-underfit
+Tsetlin machine	Also abbreviated as TM.
+two-sided test
+U-Net
+uncertainty-aware
 unified multimodal model
+unlearning
+unmanned aerial vehicle	Also abbreviated as UAV.
 upsample
-upstream task
-variance (of an estimator)
-variational
+user-generated content	Also abbreviated as UGC.
+variational inference
 vector quantization	Also abbreviated as VQ.
-vectorization
 verifiable reward
+verifiable rewards rlvr
 verifier
 video anomaly detection	Also abbreviated as VAD.
 video diffusion
+video generation
 video instance segmentation	Also abbreviated as VIS.
+video understanding
+video world model
 vision foundation model	Also abbreviated as VFM.
-vision-language	Also abbreviated as VL.
+vision transformer
+vision-language
 vision-language navigation	Also abbreviated as VLN.
 vision-language-action	Also abbreviated as VLA.
+vision-language-action (VLA) model
 vision-language-action model
-visual grounding	Also abbreviated as VG.
+visual grounding
 visual instruction tuning
 visual prompting	Also abbreviated as VP.
-visual question answering	Also abbreviated as VQA.
+visual question answering
+visual reasoning
+visual token
 visual token pruning
+visual-semantic affect graph	Also abbreviated as VSAG.
+VLA model
 voice conversion	Also abbreviated as VC.
-warmup
+wall-clock time
+warmup (in learning rate scheduling)
+Wasserstein
 watermarking
 web agent
 weight decay
 weight streaming
 weight-only quantization
-weisfeiler-leman	Also abbreviated as WL.
+Weisfeiler-Leman	Also abbreviated as WL.
+white-box
 whitening
 whole slide image	Also abbreviated as WSI.
 win rate
 word error rate	Also abbreviated as WER.
-worker
+world action model	Also abbreviated as WAM.
+world modeling
+xlstm
 you only look once	Also abbreviated as YOLO.
+zero data retention	Also abbreviated as ZDR.
+zero-shot
+zero-shot segmentation
