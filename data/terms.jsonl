@@ -112,7 +112,7 @@
 {"term": "convex function", "definitions_en": ["A function in which the region above the graph of the function is a convex set. The prototypical convex function is shaped something like the letter U. For example, the following are all convex functions: In contrast, the following function is not convex. Notice how the region above the graph is not a convex set: A strictly convex function has exactly one local minimum point, which is also the global minimum point. The classic U-shaped functions are strictly convex functions. However, some convex functions (for example, straight lines) are not U-shaped. A lot of the common loss functions, including the following, are convex functions: Many variations of gradient descent are guaranteed to find a point close to the minimum of a strictly convex function. Similarly, many variations of stochastic gradient descent have a high probability (though, not a guarantee) of finding a point close to the minimum of a strictly convex function. The sum of two convex functions (for example, L2 loss + L1 regularization) is a convex function. Deep models are never convex functions. Remarkably, algorithms designed for convex optimization tend to find reasonably good solutions on deep networks anyway, even though those solutions are not guaranteed to be a global minimum."], "tags": [], "sources": ["google"]}
 {"term": "convex optimization", "definitions_en": ["The process of using mathematical techniques such as gradient descent to find the minimum of a convex function. A great deal of research in machine learning has focused on formulating various problems as convex optimization problems and in solving those problems more efficiently. For complete details, see Boyd and Vandenberghe, Convex Optimization."], "tags": [], "sources": ["google"]}
 {"term": "convex set", "definitions_en": ["A subset of Euclidean space such that a line drawn between any two points in the subset remains completely within the subset. For instance, the following two shapes are convex sets: In contrast, the following two shapes are not convex sets:"], "tags": [], "sources": ["google"]}
-{"term": "convolution", "definitions_en": ["In mathematics, casually speaking, a mixture of two functions. In machine learning, a convolution mixes the convolutional filter and the input matrix in order to train weights. The term \"convolution\" in machine learning is often a shorthand way of referring to either convolutional operation or convolutional layer. Without convolutions, a machine learning algorithm would have to learn a separate weight for every cell in a large tensor. For example, a machine learning algorithm training on 2K x 2K images would be forced to find 4M separate weights. Thanks to convolutions, a machine learning algorithm only has to find weights for every cell in the convolutional filter, dramatically reducing the memory needed to train the model. When the convolutional filter is applied, it is simply replicated across cells such that each is multiplied by the filter."], "tags": [], "sources": ["google"]}
+{"term": "convolution", "definitions_en": ["In mathematics, casually speaking, a mixture of two functions. In machine learning, a convolution mixes the convolutional filter and the input matrix in order to train weights. The term \"convolution\" in machine learning is often a shorthand way of referring to either convolutional operation or convolutional layer. Without convolutions, a machine learning algorithm would have to learn a separate weight for every cell in a large tensor. For example, a machine learning algorithm training on 2K x 2K images would be forced to find 4M separate weights. Thanks to convolutions, a machine learning algorithm only has to find weights for every cell in the convolutional filter, dramatically reducing the memory needed to train the model. When the convolutional filter is applied, it is simply replicated across cells such that each is multiplied by the filter.", "A type of layer in a neural network where the input matrix is multiplied element-wise by a smaller matrix (kernel or filter) and the values are summed up in a new matrix. This is known as a convolutional operation which is repeated over the entire input matrix. Each operation is applied to a different segment of the input matrix. Convolutional neural networks (CNNs) are commonly used in computer vision."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "convolutional filter", "definitions_en": ["One of the two actors in a convolutional operation. (The other actor is a slice of an input matrix.) A convolutional filter is a matrix having the same rank as the input matrix, but a smaller shape. For example, given a 28x28 input matrix, the filter could be any 2D matrix smaller than 28x28. In photographic manipulation, all the cells in a convolutional filter are typically set to a constant pattern of ones and zeroes. In machine learning, convolutional filters are typically seeded with random numbers and then the network trains the ideal values."], "tags": [], "sources": ["google"]}
 {"term": "convolutional layer", "definitions_en": ["A layer of a deep neural network in which a convolutional filter passes along an input matrix. For example, consider the following 3x3 convolutional filter: The following animation shows a convolutional layer consisting of 9 convolutional operations involving the 5x5 input matrix. Notice that each convolutional operation works on a different 3x3 slice of the input matrix. The resulting 3x3 matrix (on the right) consists of the results of the 9 convolutional operations:"], "tags": [], "sources": ["google"]}
 {"term": "convolutional neural network", "definitions_en": ["A neural network in which at least one layer is a convolutional layer. A typical convolutional neural network consists of some combination of the following layers: Convolutional neural networks have had great success in certain kinds of problems, such as image recognition.", "In deep learning, a convolutional neural network (CNN, or ConvNet) is a class of deep neural network most commonly applied to image analysis. CNNs use a variation of multilayer perceptrons designed to require minimal preprocessing. They are also known as shift invariant or space invariant artificial neural networks (SIANN), based on their shared-weights architecture and translation invariance characteristics."], "tags": [], "sources": ["google", "wikipedia"]}
@@ -212,7 +212,7 @@
 {"term": "feature", "definitions_en": ["An input variable to a machine learning model. An example consists of one or more features. For instance, suppose you are training a model to determine the influence of weather conditions on student test scores. The following table shows three examples, each of which contains three features and one label: Contrast with label.", "An individual measurable property or characteristic of a phenomenon. In machine learning, a feature is often an input variable or attribute used by a model to represent an observation for tasks such as prediction, classification, and pattern recognition. In computer vision and image processing, a feature is a piece of information about the content of an image; typically about whether a certain region of the image has certain properties. Features may be specific structures in an image (such as points, edges, or objects), or the result of a general neighborhood operation or feature detection applied to the image."], "tags": ["fundamentals"], "sources": ["google", "wikipedia"]}
 {"term": "feature cross", "definitions_en": ["A synthetic feature formed by \"crossing\" categorical or bucketed features. For example, consider a \"mood forecasting\" model that represents temperature in one of the following four buckets: And represents wind speed in one of the following three buckets: Without feature crosses, the linear model trains independently on each of the preceding seven various buckets. So, the model trains on, for example, freezing independently of the training on, for example, windy. Alternatively, you could create a feature cross of temperature and wind speed. This synthetic feature would have the following 12 possible values: Thanks to feature crosses, the model can learn mood differences between a freezing-windy day and a freezing-still day. If you create a synthetic feature from two features that each have a lot of different buckets, the resulting feature cross will have a huge number of possible combinations. For example, if one feature has 1,000 buckets and the other feature has 2,000 buckets, the resulting feature cross has 2,000,000 buckets. Formally, a cross is a Cartesian product. Feature crosses are mostly used with linear models and are rarely used with neural networks."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "feature engineering", "definitions_en": ["A process that involves the following steps: For example, you might determine that temperature might be a useful feature. Then, you might experiment with bucketing to optimize what the model can learn from different temperature ranges. Feature engineering is sometimes called feature extraction or featurization. In TensorFlow, feature engineering often means converting raw log file entries to tf.Example protocol buffers. See also tf.Transform."], "tags": ["fundamentals", "TensorFlow"], "sources": ["google"]}
-{"term": "feature extraction", "definitions_en": ["Overloaded term having either of the following definitions:", "In machine learning, pattern recognition, and image processing, feature extraction starts from an initial set of measured data and builds derived values (features) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations."], "tags": [], "sources": ["google", "wikipedia"]}
+{"term": "feature extraction", "definitions_en": ["Overloaded term having either of the following definitions:", "In machine learning, pattern recognition, and image processing, feature extraction starts from an initial set of measured data and builds derived values (features) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations.", "The process of selecting and transforming raw data into a set of features that are more informative and useful for machine learning algorithms. Some examples of feature extraction include transforming raw text into word embeddings and extracting important features such as edges or shapes from image/video data."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
 {"term": "feature importances", "definitions_en": ["Synonym for variable importances."], "tags": ["df", "Metric"], "sources": ["google"]}
 {"term": "feature set", "definitions_en": ["The group of features your machine learning model trains on. For example, a simple feature set for a model that predicts housing prices might consist of postal code, property size, and property condition."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "feature spec", "definitions_en": ["Describes the information required to extract features data from the tf.Example protocol buffer. Because the tf.Example protocol buffer is just a container for data, you must specify the following:"], "tags": ["TensorFlow"], "sources": ["google"]}
@@ -291,7 +291,7 @@
 {"term": "in-context learning", "definitions_en": ["Synonym for few-shot prompting.", "A capability of large language models, in which a model performs a new task using only the instructions or examples given in its input prompt, without any update to its weights. It differs from fine-tuning in that no further training of the model is needed, and the learned behaviour lasts only for the current prompt. It is the basis of few-shot and zero-shot prompting, and became widely known after the release of GPT-3."], "tags": ["generativeAI"], "sources": ["google", "wikipedia", "manual"]}
 {"term": "independently and identically distributed", "definitions_en": ["Data drawn from a distribution that doesn't change, and where each value drawn doesn't depend on values that have been drawn previously. An i.i.d. is the ideal gas of machine learning—a useful mathematical construct but almost never exactly found in the real world. For example, the distribution of visitors to a web page may be i.i.d. over a brief window of time; that is, the distribution doesn't change during that brief window and one person's visit is generally independent of another's visit. However, if you expand that window of time, seasonal differences in the web page's visitors may appear."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "individual fairness", "definitions_en": ["A fairness metric that checks whether similar individuals are classified similarly. For example, Brobdingnagian Academy might want to satisfy individual fairness by ensuring that two students with identical grades and standardized test scores are equally likely to gain admission. Note that individual fairness relies entirely on how you define \"similarity\" (in this case, grades and test scores), and you can run the risk of introducing new fairness problems if your similarity metric misses important information (such as the rigor of a student's curriculum)."], "tags": ["responsible", "Metric"], "sources": ["google"]}
-{"term": "inference", "definitions_en": ["In traditional machine learning, the process of making predictions by applying a trained model to unlabeled examples. See Supervised Learning in the Intro to ML course to learn more. In large language models, inference is the process of using a trained model to generate a response to an input prompt. Inference has a somewhat different meaning in statistics. See the Wikipedia article on statistical inference for details."], "tags": ["fundamentals", "generativeAI"], "sources": ["google"]}
+{"term": "inference", "definitions_en": ["In traditional machine learning, the process of making predictions by applying a trained model to unlabeled examples. See Supervised Learning in the Intro to ML course to learn more. In large language models, inference is the process of using a trained model to generate a response to an input prompt. Inference has a somewhat different meaning in statistics. See the Wikipedia article on statistical inference for details.", "Inference is the process of evaluating a model on new data after training is complete. See the Pipeline for inference tutorial to learn how to perform inference with 🤗 Transformers."], "tags": ["fundamentals", "generativeAI"], "sources": ["google", "huggingface"]}
 {"term": "inference path", "definitions_en": ["In a decision tree, during inference, the route a particular example takes from the root to other conditions, terminating with a leaf. For example, in the following decision tree, the thicker arrows show the inference path for an example with the following feature values: The inference path in the following illustration travels through three conditions before reaching the leaf (Zeta). The three thick arrows show the inference path."], "tags": ["df"], "sources": ["google"]}
 {"term": "information gain", "definitions_en": ["In decision forests, the difference between a node's entropy and the weighted (by number of examples) sum of the entropy of its children nodes. A node's entropy is the entropy of the examples in that node. For example, consider the following entropy values: So 40% of the examples are in one child node and 60% are in the other child node. Therefore: So, the information gain is: Most splitters seek to create conditions that maximize information gain."], "tags": ["df", "Metric"], "sources": ["google"]}
 {"term": "in-group bias", "definitions_en": ["Showing partiality to one's own group or own characteristics. If testers or raters consist of the machine learning developer's friends, family, or colleagues, then in-group bias may invalidate product testing or the dataset. In-group bias is a form of group attribution bias. See also out-group homogeneity bias."], "tags": ["responsible"], "sources": ["google"]}
@@ -406,8 +406,8 @@
 {"term": "multitask", "definitions_en": ["A machine learning technique in which a single model is trained to perform multiple tasks. Multitask models are created by training on data that is appropriate for each of the different tasks. This allows the model to learn to share information across the tasks, which helps the model learn more effectively. A model trained for multiple tasks often has improved generalization abilities and can be more robust at handling different types of data. N"], "tags": [], "sources": ["google"]}
 {"term": "Nano", "definitions_en": ["A relatively small Gemini model designed for on-device use. See Gemini Nano for details."], "tags": ["generativeAI"], "sources": ["google"]}
 {"term": "NaN trap", "definitions_en": ["When one number in your model becomes a NaN during training, which causes many or all other numbers in your model to eventually become a NaN. NaN is an abbreviation for Not a Number."], "tags": [], "sources": ["google"]}
-{"term": "natural language processing", "definitions_en": ["A subfield of computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human (natural) languages, in particular how to program computers to process and analyze large amounts of natural language data."], "tags": [], "sources": ["google", "wikipedia"]}
-{"term": "natural language understanding", "definitions_en": ["A subset of natural language processing that determines the intentions of something said or typed. Natural language understanding can go beyond natural language processing to consider complex aspects of language like context, sarcasm, and sentiment."], "tags": [], "sources": ["google"]}
+{"term": "natural language processing", "definitions_en": ["A subfield of computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human (natural) languages, in particular how to program computers to process and analyze large amounts of natural language data.", "A generic way to say \"deal with texts\"."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
+{"term": "natural language understanding", "definitions_en": ["A subset of natural language processing that determines the intentions of something said or typed. Natural language understanding can go beyond natural language processing to consider complex aspects of language like context, sarcasm, and sentiment.", "All tasks related to understanding what is in a text (for instance classifying the whole text, individual words)."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "negative class", "definitions_en": ["In binary classification, one class is termed positive and the other is termed negative. The positive class is the thing or event that the model is testing for and the negative class is the other possibility. For example: Contrast with positive class."], "tags": ["fundamentals", "Metric"], "sources": ["google"]}
 {"term": "negative sampling", "definitions_en": ["Synonym for candidate sampling."], "tags": [], "sources": ["google"]}
 {"term": "Neural Architecture Search", "definitions_en": ["A technique for automatically designing the architecture of a neural network. NAS algorithms can reduce the amount of time and resources required to train a neural network. NAS typically uses: NAS algorithms often start with a small set of possible architectures and gradually expand the search space as the algorithm learns more about what architectures are effective. The fitness function is typically based on the performance of the architecture on a training set, and the algorithm is typically trained using a reinforcement learning technique. NAS algorithms have proven effective in finding high-performing architectures for a variety of tasks, including image classification, text classification, and machine translation."], "tags": [], "sources": ["google"]}
@@ -471,7 +471,7 @@
 {"term": "performance", "definitions_en": ["Overloaded term with the following meanings:"], "tags": ["Metric"], "sources": ["google"]}
 {"term": "permutation variable importances", "definitions_en": ["A type of variable importance that evaluates the increase in the prediction error of a model after permuting the feature's values. Permutation variable importance is a model-independent metric."], "tags": ["df", "Metric"], "sources": ["google"]}
 {"term": "perplexity", "definitions_en": ["One measure of how well a model is accomplishing its task. For example, suppose your task is to read the first few letters of a word a user is typing on a phone keyboard, and to offer a list of possible completion words. Perplexity, P, for this task is approximately the number of guesses you need to offer in order for your list to contain the actual word the user is trying to type. Perplexity is related to cross-entropy as follows:"], "tags": ["Metric"], "sources": ["google"]}
-{"term": "pipeline", "definitions_en": ["The infrastructure surrounding a machine learning algorithm. A pipeline includes gathering the data, putting the data into training data files, training one or more models, and exporting the models to production."], "tags": [], "sources": ["google"]}
+{"term": "pipeline", "definitions_en": ["The infrastructure surrounding a machine learning algorithm. A pipeline includes gathering the data, putting the data into training data files, training one or more models, and exporting the models to production.", "A pipeline in 🤗 Transformers is an abstraction referring to a series of steps that are executed in a specific order to preprocess and transform data and return a prediction from a model. Some example stages found in a pipeline might be data preprocessing, feature extraction, and normalization. For more details, see Pipelines for inference."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "pipelining", "definitions_en": ["A form of model parallelism in which a model's processing is divided into consecutive stages and each stage is executed on a different device. While a stage is processing one batch, the preceding stage can work on the next batch."], "tags": [], "sources": ["google"]}
 {"term": "pjit", "definitions_en": ["A JAX function that splits code to run across multiple accelerator chips. The user passes a function to pjit, which returns a function that has the equivalent semantics but is compiled into an XLA computation that runs across multiple devices (such as GPUs or TPU cores). pjit enables users to shard computations without rewriting them by using the SPMD partitioner. As of March 2023, pjit has been merged with jit. Refer to Distributed arrays and automatic parallelization for more details."], "tags": [], "sources": ["google"]}
 {"term": "plan-and-solve", "definitions_en": ["An agentic strategy where the model first drafts an explicit, multi-step plan before attempting to execute any actions."], "tags": ["agent"], "sources": ["google"]}
@@ -479,7 +479,7 @@
 {"term": "plugin", "definitions_en": ["A standardized, modular tool that can be easily attached to an agent to extend its capabilities. For example, a GitHub plugin enables agents to perform actions like reading GitHub issues and creating pull requests."], "tags": ["agent"], "sources": ["google"]}
 {"term": "pmap", "definitions_en": ["A JAX function that executes copies of an input function on multiple underlying hardware devices (CPUs, GPUs, or TPUs), with different input values. pmap relies on SPMD."], "tags": [], "sources": ["google"]}
 {"term": "policy", "definitions_en": ["In reinforcement learning, an agent's probabilistic mapping from states to actions."], "tags": [], "sources": ["google"]}
-{"term": "pooling", "definitions_en": ["Reducing a matrix (or matrixes) created by an earlier convolutional layer to a smaller matrix. Pooling usually involves taking either the maximum or average value across the pooled area. For example, suppose we have the following 3x3 matrix: A pooling operation, just like a convolutional operation, divides that matrix into slices and then slides that convolutional operation by strides. For example, suppose the pooling operation divides the convolutional matrix into 2x2 slices with a 1x1 stride. As the following diagram illustrates, four pooling operations take place. Imagine that each pooling operation picks the maximum value of the four in that slice: Pooling helps enforce translational invariance in the input matrix. Pooling for vision applications is known more formally as spatial pooling. Time-series applications usually refer to pooling as temporal pooling. Less formally, pooling is often called subsampling or downsampling."], "tags": [], "sources": ["google"]}
+{"term": "pooling", "definitions_en": ["Reducing a matrix (or matrixes) created by an earlier convolutional layer to a smaller matrix. Pooling usually involves taking either the maximum or average value across the pooled area. For example, suppose we have the following 3x3 matrix: A pooling operation, just like a convolutional operation, divides that matrix into slices and then slides that convolutional operation by strides. For example, suppose the pooling operation divides the convolutional matrix into 2x2 slices with a 1x1 stride. As the following diagram illustrates, four pooling operations take place. Imagine that each pooling operation picks the maximum value of the four in that slice: Pooling helps enforce translational invariance in the input matrix. Pooling for vision applications is known more formally as spatial pooling. Time-series applications usually refer to pooling as temporal pooling. Less formally, pooling is often called subsampling or downsampling.", "An operation that reduces a matrix into a smaller matrix, either by taking the maximum or average of the pooled dimension(s). Pooling layers are commonly found between convolutional layers to downsample the feature representation."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "positional encoding", "definitions_en": ["A technique to add information about the position of a token in a sequence to the token's embedding. Transformer models use positional encoding to better understand the relationship between different parts of the sequence. A common implementation of positional encoding uses a sinusoidal function. (Specifically, the frequency and amplitude of the sinusoidal function are determined by the position of the token in the sequence.) This technique enables a Transformer model to learn to attend to different parts of the sequence based on their position."], "tags": [], "sources": ["google"]}
 {"term": "positive class", "definitions_en": ["The class you are testing for. For example, the positive class in a cancer model might be \"tumor.\" The positive class in an email classification model might be \"spam.\" Contrast with negative class. The term positive class can be confusing because the \"positive\" outcome of many tests is often an undesirable result. For example, the positive class in many medical tests corresponds to tumors or diseases. In general, you want a doctor to tell you, \"Congratulations! Your test results were negative.\" Regardless, the positive class is the event that the test is seeking to find. Admittedly, you're simultaneously testing for both the positive and negative classes."], "tags": ["fundamentals", "Metric"], "sources": ["google"]}
 {"term": "post-processing", "definitions_en": ["Adjusting the output of a model after the model has been run. Post-processing can be used to enforce fairness constraints without modifying models themselves. For example, one might apply post-processing to a binary classification model by setting a classification threshold such that equality of opportunity is maintained for some attribute by checking that the true positive rate is the same for all values of that attribute."], "tags": ["responsible", "fundamentals"], "sources": ["google"]}
@@ -494,7 +494,7 @@
 {"term": "predictive ML", "definitions_en": ["Any standard (\"classic\") machine learning system. The term predictive ML doesn't have a formal definition. Rather, the term distinguishes a category of ML systems not based on generative AI."], "tags": [], "sources": ["google"]}
 {"term": "predictive parity", "definitions_en": ["A fairness metric that checks whether, for a given classification model, the precision rates are equivalent for subgroups under consideration. For example, a model that predicts college acceptance would satisfy predictive parity for nationality if its precision rate is the same for Lilliputians and Brobdingnagians. Predictive parity is sometime also called predictive rate parity."], "tags": ["responsible", "Metric"], "sources": ["google"]}
 {"term": "predictive rate parity", "definitions_en": ["Another name for predictive parity."], "tags": ["responsible", "Metric"], "sources": ["google"]}
-{"term": "preprocessing", "definitions_en": [], "tags": ["responsible"], "sources": ["google"]}
+{"term": "preprocessing", "definitions_en": ["The task of preparing raw data into a format that can be easily consumed by machine learning models. For example, text is typically preprocessed by tokenization. To gain a better idea of what preprocessing looks like for other input types, check out the Preprocess tutorial."], "tags": ["responsible"], "sources": ["google", "huggingface"]}
 {"term": "pre-trained model", "definitions_en": ["Although this term could refer to any trained model or trained embedding vector, pre-trained model now typically refers to a trained large language model or other form of trained generative AI model."], "tags": ["generativeAI"], "sources": ["google"]}
 {"term": "pre-training", "definitions_en": ["The initial training of a model on a large dataset. Some pre-trained models are clumsy giants and must typically be refined through additional training. For example, ML experts might pre-train a large language model on a vast text dataset, such as all the English pages in Wikipedia. Following pre-training, the resulting model might be further refined through any of the following techniques:"], "tags": ["generativeAI"], "sources": ["google"]}
 {"term": "prior belief", "definitions_en": ["What you believe about the data before you begin training on it. For example, L2 regularization relies on a prior belief that weights should be small and normally distributed around zero."], "tags": [], "sources": ["google"]}
@@ -535,7 +535,7 @@
 {"term": "recommendation system", "definitions_en": ["A system that selects for each user a relatively small set of desirable items from a large corpus. For example, a video recommendation system might recommend two videos from a corpus of 100,000 videos, selecting Casablanca and The Philadelphia Story for one user, and Wonder Woman and Black Panther for another. A video recommendation system might base its recommendations on factors such as:"], "tags": [], "sources": ["google"]}
 {"term": "ReCoRD", "definitions_en": ["Abbreviation for Reading Comprehension with Commonsense Reasoning Dataset."], "tags": ["Metric"], "sources": ["google"]}
 {"term": "Rectified Linear Unit", "definitions_en": ["An activation function with the following behavior: For example: Here is a plot of ReLU: ReLU is a very popular activation function. Despite its simple behavior, ReLU still enables a neural network to learn nonlinear relationships between features and the label."], "tags": ["fundamentals"], "sources": ["google"]}
-{"term": "recurrent neural network", "definitions_en": ["A neural network that is intentionally run multiple times, where parts of each run feed into the next run. Specifically, hidden layers from the previous run provide part of the input to the same hidden layer in the next run. Recurrent neural networks are particularly useful for evaluating sequences, so that the hidden layers can learn from previous runs of the neural network on earlier parts of the sequence. For example, the following figure shows a recurrent neural network that runs four times. Notice that the values learned in the hidden layers from the first run become part of the input to the same hidden layers in the second run. Similarly, the values learned in the hidden layer on the second run become part of the input to the same hidden layer in the third run. In this way, the recurrent neural network gradually trains and predicts the meaning of the entire sequence rather than just the meaning of individual words.", "A class of artificial neural networks where connections between nodes form a directed graph along a temporal sequence. This allows it to exhibit temporal dynamic behavior. Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs. This makes them applicable to tasks such as unsegmented, connected handwriting recognition or speech recognition."], "tags": [], "sources": ["google", "wikipedia"]}
+{"term": "recurrent neural network", "definitions_en": ["A neural network that is intentionally run multiple times, where parts of each run feed into the next run. Specifically, hidden layers from the previous run provide part of the input to the same hidden layer in the next run. Recurrent neural networks are particularly useful for evaluating sequences, so that the hidden layers can learn from previous runs of the neural network on earlier parts of the sequence. For example, the following figure shows a recurrent neural network that runs four times. Notice that the values learned in the hidden layers from the first run become part of the input to the same hidden layers in the second run. Similarly, the values learned in the hidden layer on the second run become part of the input to the same hidden layer in the third run. In this way, the recurrent neural network gradually trains and predicts the meaning of the entire sequence rather than just the meaning of individual words.", "A class of artificial neural networks where connections between nodes form a directed graph along a temporal sequence. This allows it to exhibit temporal dynamic behavior. Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs. This makes them applicable to tasks such as unsegmented, connected handwriting recognition or speech recognition.", "A type of model that uses a loop over a layer to process texts."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
 {"term": "reference text", "definitions_en": ["An expert's response to a prompt. For example, given the following prompt: Translate the question \"What is your name?\" from English to French. An expert's response might be: Comment vous appelez-vous? Various metrics (such as ROUGE) measure the degree to which the reference text matches an ML model's generated text."], "tags": ["generativeAI"], "sources": ["google"]}
 {"term": "reflection", "definitions_en": ["A strategy for improving the quality of an agentic workflow by examining (reflecting on) a step's output before passing that output to the next step. The examiner is often the same LLM that generated the response (though it could be a different LLM). How could the same LLM that generated a response be a fair judge of its own response? The \"trick\" is to put the LLM in a critical (reflective) mindset. This process is analogous to a writer who uses a creative mindset to write a first draft and then switches to a critical mindset to edit it. For example, imagine an agentic workflow whose first step is to create text for coffee mugs. The prompt for this step might be: You are a creative. Generate humorous, original text of less than 50 characters suitable for a coffee mug. Now imagine the following reflective prompt: You are a coffee drinker. Would you find the preceding response humorous? The workflow might then only pass text that receives a high reflection score to the next stage."], "tags": ["generativeAI", "agent"], "sources": ["google"]}
 {"term": "regression model", "definitions_en": ["Informally, a model that generates a numerical prediction. (In contrast, a classification model generates a class prediction.) For example, the following are all regression models: Two common types of regression models are: Not every model that outputs numerical predictions is a regression model. In some cases, a numeric prediction is really just a classification model that happens to have numeric class names. For example, a model that predicts a numeric postal code is a classification model, not a regression model."], "tags": ["fundamentals"], "sources": ["google"]}
@@ -578,12 +578,12 @@
 {"term": "scikit-learn", "definitions_en": ["A popular open-source machine learning platform. See scikit-learn.org."], "tags": [], "sources": ["google"]}
 {"term": "scoring", "definitions_en": ["The part of a recommendation system that provides a value or ranking for each item produced by the candidate generation phase."], "tags": ["Metric"], "sources": ["google"]}
 {"term": "selection bias", "definitions_en": ["Errors in conclusions drawn from sampled data due to a selection process that generates systematic differences between samples observed in the data and those not observed. The following forms of selection bias exist: For example, suppose you are creating a machine learning model that predicts people's enjoyment of a movie. To collect training data, you hand out a survey to everyone in the front row of a theater showing the movie. Offhand, this may sound like a reasonable way to gather a dataset; however, this form of data collection may introduce the following forms of selection bias:"], "tags": ["responsible"], "sources": ["google"]}
-{"term": "self-attention", "definitions_en": ["A neural network layer that transforms a sequence of embeddings (for example, token embeddings) into another sequence of embeddings. Each embedding in the output sequence is constructed by integrating information from the elements of the input sequence through an attention mechanism. The self part of self-attention refers to the sequence attending to itself rather than to some other context. Self-attention is one of the main building blocks for Transformers and uses dictionary lookup terminology, such as \"query\", \"key\", and \"value\". A self-attention layer starts with a sequence of input representations, one for each word. The input representation for a word can be a simple embedding. For each word in an input sequence, the network scores the relevance of the word to every element in the whole sequence of words. The relevance scores determine how much the word's final representation incorporates the representations of other words. For example, consider the following sentence: The animal didn't cross the street because it was too tired. The following illustration (from Transformer: A Novel Neural Network Architecture for Language Understanding) shows a self-attention layer's attention pattern for the pronoun it, with the darkness of each line indicating how much each word contributes to the representation: The self-attention layer highlights words that are relevant to \"it\". In this case, the attention layer has learned to highlight words that it might refer to, assigning the highest weight to animal. For a sequence of n tokens, self-attention transforms a sequence of embeddings n separate times, once at each position in the sequence. Refer also to attention and multi-head self-attention."], "tags": [], "sources": ["google"]}
+{"term": "self-attention", "definitions_en": ["A neural network layer that transforms a sequence of embeddings (for example, token embeddings) into another sequence of embeddings. Each embedding in the output sequence is constructed by integrating information from the elements of the input sequence through an attention mechanism. The self part of self-attention refers to the sequence attending to itself rather than to some other context. Self-attention is one of the main building blocks for Transformers and uses dictionary lookup terminology, such as \"query\", \"key\", and \"value\". A self-attention layer starts with a sequence of input representations, one for each word. The input representation for a word can be a simple embedding. For each word in an input sequence, the network scores the relevance of the word to every element in the whole sequence of words. The relevance scores determine how much the word's final representation incorporates the representations of other words. For example, consider the following sentence: The animal didn't cross the street because it was too tired. The following illustration (from Transformer: A Novel Neural Network Architecture for Language Understanding) shows a self-attention layer's attention pattern for the pronoun it, with the darkness of each line indicating how much each word contributes to the representation: The self-attention layer highlights words that are relevant to \"it\". In this case, the attention layer has learned to highlight words that it might refer to, assigning the highest weight to animal. For a sequence of n tokens, self-attention transforms a sequence of embeddings n separate times, once at each position in the sequence. Refer also to attention and multi-head self-attention.", "Each element of the input finds out which other elements of the input they should attend to."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "self-correction", "definitions_en": ["An agent's ability to detect an error in its own output and then try a different approach."], "tags": ["agent"], "sources": ["google"]}
-{"term": "self-supervised learning", "definitions_en": ["A family of techniques for converting an unsupervised machine learning problem into a supervised machine learning problem by creating surrogate labels from unlabeled examples. Some Transformer-based models such as BERT use self-supervised learning. Self-supervised training is a semi-supervised learning approach."], "tags": [], "sources": ["google"]}
+{"term": "self-supervised learning", "definitions_en": ["A family of techniques for converting an unsupervised machine learning problem into a supervised machine learning problem by creating surrogate labels from unlabeled examples. Some Transformer-based models such as BERT use self-supervised learning. Self-supervised training is a semi-supervised learning approach.", "A category of machine learning techniques in which a model creates its own learning objective from unlabeled data. It differs from unsupervised learning and supervised learning in that the learning process is supervised, but not explicitly from the user. One example of self-supervised learning is masked language modeling, where a model is passed sentences with a proportion of its tokens removed and learns to predict the missing tokens."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "self-training", "definitions_en": ["A variant of self-supervised learning that is particularly useful when all of the following conditions are true: Self-training works by iterating over the following two steps until the model stops improving: Notice that each iteration of Step 2 adds more labeled examples for Step 1 to train on."], "tags": [], "sources": ["google"]}
 {"term": "semantic memory", "definitions_en": ["The information that an LLM has when training ends. For example, semantic memory includes an excellent knowledge of grammar, vocabulary, and the facts it was explicitly trained on. Semantic memory does not include information gathered from retrieval-augmented generation. Contrast semantic memory with episodic memory."], "tags": [], "sources": ["google"]}
-{"term": "semi-supervised learning", "definitions_en": ["Training a model on data where some of the training examples have labels but others don't. One technique for semi-supervised learning is to infer labels for the unlabeled examples, and then to train on the inferred labels to create a new model. Semi-supervised learning can be useful if labels are expensive to obtain but unlabeled examples are plentiful. Self-training is one technique for semi-supervised learning.", "Also weak supervision. A machine learning training paradigm characterized by using a combination of a small amount of human-labeled data (used exclusively in supervised learning), followed by a large amount of unlabeled data (used exclusively in unsupervised learning)."], "tags": [], "sources": ["google", "wikipedia"]}
+{"term": "semi-supervised learning", "definitions_en": ["Training a model on data where some of the training examples have labels but others don't. One technique for semi-supervised learning is to infer labels for the unlabeled examples, and then to train on the inferred labels to create a new model. Semi-supervised learning can be useful if labels are expensive to obtain but unlabeled examples are plentiful. Self-training is one technique for semi-supervised learning.", "Also weak supervision. A machine learning training paradigm characterized by using a combination of a small amount of human-labeled data (used exclusively in supervised learning), followed by a large amount of unlabeled data (used exclusively in unsupervised learning).", "A broad category of machine learning training techniques that leverages a small amount of labeled data with a larger quantity of unlabeled data to improve the accuracy of a model, unlike supervised learning and unsupervised learning. An example of a semi-supervised learning approach is \"self-training\", in which a model is trained on labeled data, and then used to make predictions on the unlabeled data. The portion of the unlabeled data that the model predicts with the most confidence gets added to the labeled dataset and used to retrain the model."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
 {"term": "sensitive attribute", "definitions_en": [], "tags": ["responsible"], "sources": ["google"]}
 {"term": "sentiment analysis", "definitions_en": ["Using statistical or machine learning algorithms to determine a group's overall attitude—positive or negative—toward a service, product, organization, or topic. For example, using natural language understanding, an algorithm could perform sentiment analysis on the textual feedback from a university course to determine the degree to which students generally liked or disliked the course."], "tags": [], "sources": ["google"]}
 {"term": "sequence model", "definitions_en": ["A model whose inputs have a sequential dependence. For example, predicting the next video watched from a sequence of previously watched videos."], "tags": [], "sources": ["google"]}
@@ -623,7 +623,7 @@
 {"term": "step", "definitions_en": ["A forward pass and backward pass of one batch."], "tags": [], "sources": ["google"]}
 {"term": "step size", "definitions_en": ["Synonym for learning rate."], "tags": [], "sources": ["google"]}
 {"term": "stochastic gradient descent", "definitions_en": ["A gradient descent algorithm in which the batch size is one. In other words, SGD trains on a single example chosen uniformly at random from a training set."], "tags": ["fundamentals"], "sources": ["google"]}
-{"term": "stride", "definitions_en": ["In a convolutional operation or pooling, the delta in each dimension of the next series of input slices. For example, the following animation demonstrates a (1,1) stride during a convolutional operation. Therefore, the next input slice starts one position to the right of the previous input slice. When the operation reaches the right edge, the next slice is all the way over to the left but one position down. The preceding example demonstrates a two-dimensional stride. If the input matrix is three-dimensional, the stride would also be three-dimensional."], "tags": [], "sources": ["google"]}
+{"term": "stride", "definitions_en": ["In a convolutional operation or pooling, the delta in each dimension of the next series of input slices. For example, the following animation demonstrates a (1,1) stride during a convolutional operation. Therefore, the next input slice starts one position to the right of the previous input slice. When the operation reaches the right edge, the next slice is all the way over to the left but one position down. The preceding example demonstrates a two-dimensional stride. If the input matrix is three-dimensional, the stride would also be three-dimensional.", "In convolution or pooling, the stride refers to the distance the kernel is moved over a matrix. A stride of 1 means the kernel is moved one pixel over at a time, and a stride of 2 means the kernel is moved two pixels over at a time."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "structural risk minimization", "definitions_en": ["An algorithm that balances two goals: For example, a function that minimizes loss+regularization on the training set is a structural risk minimization algorithm. Contrast with empirical risk minimization."], "tags": [], "sources": ["google"]}
 {"term": "sub-agent", "definitions_en": ["A specialized, narrowly focused model invoked by a manager agent to handle a specific subset of a larger problem. Sub-agents typically have a narrower action space than agents."], "tags": ["agent"], "sources": ["google"]}
 {"term": "subsampling", "definitions_en": [], "tags": [], "sources": ["google"]}
@@ -661,7 +661,7 @@
 {"term": "threshold", "definitions_en": ["In an axis-aligned condition, the value that a feature is being compared against. For example, 75 is the threshold value in the following condition:"], "tags": ["df"], "sources": ["google"]}
 {"term": "time series analysis", "definitions_en": ["A subfield of machine learning and statistics that analyzes temporal data. Many types of machine learning problems require time series analysis, including classification, clustering, forecasting, and anomaly detection. For example, you could use time series analysis to forecast the future sales of winter coats by month based on historical sales data."], "tags": ["clustering"], "sources": ["google"]}
 {"term": "timestep", "definitions_en": ["One \"unrolled\" cell within a recurrent neural network. For example, the following figure shows three timesteps (labeled with the subscripts t-1, t, and t+1):"], "tags": [], "sources": ["google"]}
-{"term": "token", "definitions_en": ["In a language model, the atomic unit that the model is training on and making predictions on. A token is typically one of the following: In domains outside of language models, tokens can represent other kinds of atomic units. For example, in computer vision, a token might be a subset of an image."], "tags": [], "sources": ["google"]}
+{"term": "token", "definitions_en": ["In a language model, the atomic unit that the model is training on and making predictions on. A token is typically one of the following: In domains outside of language models, tokens can represent other kinds of atomic units. For example, in computer vision, a token might be a subset of an image.", "A part of a sentence, usually a word, but can also be a subword (non-common words are often split in subwords) or a punctuation symbol."], "tags": [], "sources": ["google", "huggingface"]}
 {"term": "tokenizer", "definitions_en": ["A system or algorithm that translates a sequence of input data into tokens. Most modern foundation models are multimodal. A tokenizer for a multimodal system must translate each input type into the appropriate format. For example, given input data consisting of both text and graphics, the tokenizer might translate input text into subwords and input images into small patches. The tokenizer must then convert all the tokens into a single unified embedding space, which enables the model to \"understand\" a stream of multimodal input."], "tags": [], "sources": ["google"]}
 {"term": "top-k accuracy", "definitions_en": ["The percentage of times that a \"target label\" appears within the first k positions of generated lists. The lists could be personalized recommendations or a list of items ordered by softmax. Top-k accuracy is also known as accuracy at k. Consider a machine learning system that uses softmax to identify tree probabilities based on a picture of tree leaves. The following table shows output lists generated from five input tree pictures. Each row contains a target label and the five most likely trees. For example, when the target label was maple, the machine learning model identified elm as the most likely tree, oak as the second most likely tree, and so on. The target label appears in the first position only once, so the top-1 accuracy is: The target label appears in one of the top three positions four times, so the top-3 accuracy is:"], "tags": ["Metric"], "sources": ["google"]}
 {"term": "tower", "definitions_en": ["A component of a deep neural network that is itself a deep neural network. In some cases, each tower reads from an independent data source, and those towers stay independent until their output is combined in a final layer. In other cases, (for example, in the encoder and decoder tower of many Transformers), towers have cross-connections to each other."], "tags": [], "sources": ["google"]}
@@ -680,8 +680,8 @@
 {"term": "training-serving skew", "definitions_en": ["The difference between a model's performance during training and that same model's performance during serving."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "training set", "definitions_en": ["The subset of the dataset used to train a model. Traditionally, examples in the dataset are divided into the following three distinct subsets: Ideally, each example in the dataset should belong to only one of the preceding subsets. For example, a single example shouldn't belong to both the training set and the validation set."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "trajectory", "definitions_en": ["In reinforcement learning, a sequence of tuples that represent a sequence of state transitions of the agent, where each tuple corresponds to the state, action, reward, and next state for a given state transition."], "tags": [], "sources": ["google"]}
-{"term": "transfer learning", "definitions_en": ["Transferring information from one machine learning task to another. For example, in multi-task learning, a single model solves multiple tasks, such as a deep model that has different output nodes for different tasks. Transfer learning might involve transferring knowledge from the solution of a simpler task to a more complex one, or involve transferring knowledge from a task where there is more data to one where there is less data. Most machine learning systems solve a single task. Transfer learning is a baby step towards artificial intelligence in which a single program can solve multiple tasks.", "A machine learning technique in which knowledge learned from a task is reused in order to boost performance on a related task. For example, for image classification, knowledge gained while learning to recognize cars could be applied when trying to recognize trucks."], "tags": [], "sources": ["google", "wikipedia"]}
-{"term": "Transformer", "definitions_en": ["A neural network architecture developed at Google that relies on self-attention mechanisms to transform a sequence of input embeddings into a sequence of output embeddings without relying on convolutions or recurrent neural networks. A Transformer can be viewed as a stack of self-attention layers. A Transformer can include any of the following: An encoder transforms a sequence of embeddings into a new sequence of the same length. An encoder includes N identical layers, each of which contains two sub-layers. These two sub-layers are applied at each position of the input embedding sequence, transforming each element of the sequence into a new embedding. The first encoder sub-layer aggregates information from across the input sequence. The second encoder sub-layer transforms the aggregated information into an output embedding. A decoder transforms a sequence of input embeddings into a sequence of output embeddings, possibly with a different length. A decoder also includes N identical layers with three sub-layers, two of which are similar to the encoder sub-layers. The third decoder sub-layer takes the output of the encoder and applies the self-attention mechanism to gather information from it. The blog post Transformer: A Novel Neural Network Architecture for Language Understanding provides a good introduction to Transformers.", "A type of deep learning architecture that exploits a multi-head attention mechanism. Transformers address some of the limitations of long short-term memory, and became widely used in natural language processing, although it can also process other types of data such as images in the case of vision transformers."], "tags": [], "sources": ["google", "wikipedia"]}
+{"term": "transfer learning", "definitions_en": ["Transferring information from one machine learning task to another. For example, in multi-task learning, a single model solves multiple tasks, such as a deep model that has different output nodes for different tasks. Transfer learning might involve transferring knowledge from the solution of a simpler task to a more complex one, or involve transferring knowledge from a task where there is more data to one where there is less data. Most machine learning systems solve a single task. Transfer learning is a baby step towards artificial intelligence in which a single program can solve multiple tasks.", "A machine learning technique in which knowledge learned from a task is reused in order to boost performance on a related task. For example, for image classification, knowledge gained while learning to recognize cars could be applied when trying to recognize trucks.", "A technique that involves taking a pretrained model and adapting it to a dataset specific to your task. Instead of training a model from scratch, you can leverage knowledge obtained from an existing model as a starting point. This speeds up the learning process and reduces the amount of training data needed."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
+{"term": "Transformer", "definitions_en": ["A neural network architecture developed at Google that relies on self-attention mechanisms to transform a sequence of input embeddings into a sequence of output embeddings without relying on convolutions or recurrent neural networks. A Transformer can be viewed as a stack of self-attention layers. A Transformer can include any of the following: An encoder transforms a sequence of embeddings into a new sequence of the same length. An encoder includes N identical layers, each of which contains two sub-layers. These two sub-layers are applied at each position of the input embedding sequence, transforming each element of the sequence into a new embedding. The first encoder sub-layer aggregates information from across the input sequence. The second encoder sub-layer transforms the aggregated information into an output embedding. A decoder transforms a sequence of input embeddings into a sequence of output embeddings, possibly with a different length. A decoder also includes N identical layers with three sub-layers, two of which are similar to the encoder sub-layers. The third decoder sub-layer takes the output of the encoder and applies the self-attention mechanism to gather information from it. The blog post Transformer: A Novel Neural Network Architecture for Language Understanding provides a good introduction to Transformers.", "A type of deep learning architecture that exploits a multi-head attention mechanism. Transformers address some of the limitations of long short-term memory, and became widely used in natural language processing, although it can also process other types of data such as images in the case of vision transformers.", "Self-attention based deep learning model architecture."], "tags": [], "sources": ["google", "wikipedia", "huggingface"]}
 {"term": "translational invariance", "definitions_en": ["In an image classification problem, an algorithm's ability to successfully classify images even when the position of objects within the image changes. For example, the algorithm can still identify a dog, whether it is in the center of the frame or at the left end of the frame."], "tags": [], "sources": ["google"]}
 {"term": "tree-of-thought prompting", "definitions_en": ["A sophisticated prompting strategy that encourages an LLM to pursue and refine the most promising intermediate solutions and to abandon the rest. Tree-of-thought prompting uses an algorithm like the following:"], "tags": [], "sources": ["google"]}
 {"term": "trigram", "definitions_en": ["An N-gram in which N=3."], "tags": [], "sources": ["google"]}
@@ -733,7 +733,7 @@
 {"term": "xsum", "definitions_en": ["Abbreviation for Extreme Summarization. Z"], "tags": [], "sources": ["google"]}
 {"term": "zero-shot learning", "definitions_en": ["A type of machine learning training where the model infers a prediction for a task that it was not specifically already trained on. In other words, the model is given zero task-specific training examples but asked to do inference for that task."], "tags": [], "sources": ["google"]}
 {"term": "zero-shot prompting", "definitions_en": ["A prompt that does not provide an example of how you want the large language model to respond. For example: The large language model might respond with any of the following: All of the answers are correct, though you might prefer a particular format. Compare and contrast zero-shot prompting with the following terms:"], "tags": ["generativeAI"], "sources": ["google"]}
-{"term": "Z-score normalization", "definitions_en": ["A scaling technique that replaces a raw feature value with a floating-point value representing the number of standard deviations from that feature's mean. For example, consider a feature whose mean is 800 and whose standard deviation is 100. The following table shows how Z-score normalization would map the raw value to its Z-score: The machine learning model then trains on the Z-scores for that feature instead of on the raw values. Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates. Last updated 2026-04-10 UTC."], "tags": ["fundamentals"], "sources": ["google"]}
+{"term": "Z-score normalization", "definitions_en": ["A scaling technique that replaces a raw feature value with a floating-point value representing the number of standard deviations from that feature's mean. For example, consider a feature whose mean is 800 and whose standard deviation is 100. The following table shows how Z-score normalization would map the raw value to its Z-score: The machine learning model then trains on the Z-scores for that feature instead of on the raw values. Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates. Last updated 2026-11-06 UTC."], "tags": ["fundamentals"], "sources": ["google"]}
 {"term": "A* search", "definitions_en": ["Pronounced \"A-star\". A graph traversal and pathfinding algorithm which is used in many fields of computer science due to its completeness, optimality, and optimal efficiency."], "tags": [], "sources": ["wikipedia"]}
 {"term": "abductive logic programming", "definitions_en": ["A high-level knowledge-representation framework that can be used to solve problems declaratively based on abductive reasoning. It extends normal logic programming by allowing some predicates to be incompletely defined, declared as abducible predicates."], "tags": [], "sources": ["wikipedia"]}
 {"term": "abductive reasoning", "definitions_en": ["Also abduction. A form of logical inference which starts with an observation or set of observations then seeks to find the simplest and most likely explanation. This process, unlike deductive reasoning, yields a plausible conclusion but does not positively verify it. abductive inference, or retroduction"], "tags": [], "sources": ["wikipedia"]}
@@ -854,7 +854,7 @@
 {"term": "declarative programming", "definitions_en": ["A programming paradigm—a style of building the structure and elements of computer programs—that expresses the logic of a computation without describing its control flow."], "tags": [], "sources": ["wikipedia"]}
 {"term": "deductive classifier", "definitions_en": ["A type of artificial intelligence inference engine. It takes as input a set of declarations in a frame language about a domain such as medical research or molecular biology. For example, the names of classes, sub-classes, properties, and restrictions on allowable values."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Deep Blue", "definitions_en": ["was a chess-playing computer developed by IBM. It is known for being the first computer chess-playing system to win both a chess game and a chess match against a reigning world champion under regular time controls."], "tags": [], "sources": ["wikipedia"]}
-{"term": "deep learning", "definitions_en": ["A subset of machine learning that focuses on utilizing neural networks to perform tasks such as classification, regression, and representation learning. The field takes inspiration from biological neuroscience and is centered around stacking artificial neurons into layers and \"training\" them to process data. The adjective \"deep\" refers to the use of multiple layers (ranging from three to several hundred or thousands) in the network. Methods used can be either supervised, semi-supervised, or unsupervised."], "tags": [], "sources": ["wikipedia"]}
+{"term": "deep learning", "definitions_en": ["A subset of machine learning that focuses on utilizing neural networks to perform tasks such as classification, regression, and representation learning. The field takes inspiration from biological neuroscience and is centered around stacking artificial neurons into layers and \"training\" them to process data. The adjective \"deep\" refers to the use of multiple layers (ranging from three to several hundred or thousands) in the network. Methods used can be either supervised, semi-supervised, or unsupervised.", "Machine learning algorithms which use neural networks with several layers."], "tags": [], "sources": ["wikipedia", "huggingface"]}
 {"term": "DeepMind Technologies", "definitions_en": ["A British artificial intelligence company founded in September 2010, currently owned by Alphabet Inc. The company is based in London, with research centres in Canada, France, and the United States. Acquired by Google in 2014, the company has created a neural network that learns how to play video games in a fashion similar to that of humans, as well as a neural Turing machine, or a neural network that may be able to access an external memory like a conventional Turing machine, resulting in a computer that mimics the short-term memory of the human brain. The company made headlines in 2016 after its AlphaGo program beat human professional Go player Lee Sedol, the world champion, in a five-game match, which was the subject of a documentary film. A more general program, AlphaZero, beat the most powerful programs playing Go, chess, and shogi (Japanese chess) after a few days of play against itself using reinforcement learning."], "tags": [], "sources": ["wikipedia"]}
 {"term": "default logic", "definitions_en": ["A non-monotonic logic proposed by Raymond Reiter to formalize reasoning with default assumptions."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Density-based spatial clustering of applications with noise", "definitions_en": ["A clustering algorithm proposed by Martin Ester, Hans-Peter Kriegel, Jörg Sander, and Xiaowei Xu in 1996."], "tags": [], "sources": ["wikipedia"]}
@@ -963,7 +963,7 @@
 {"term": "name binding", "definitions_en": ["In programming languages, name binding is the association of entities (data and/or code) with identifiers. An identifier bound to an object is said to reference that object. Machine languages have no built-in notion of identifiers, but name-object bindings as a service and notation for the programmer is implemented by programming languages. Binding is intimately connected with scoping, as scope determines which names bind to which objects – at which locations in the program code (lexically) and in which one of the possible execution paths (temporally). Use of an identifier id in a context that establishes a binding for id is called a binding (or defining) occurrence. In all other occurrences (e.g., in expressions, assignments, and subprogram calls), an identifier stands for what it is bound to; such occurrences are called applied occurrences."], "tags": [], "sources": ["wikipedia"]}
 {"term": "named-entity recognition", "definitions_en": ["Also entity identification, entity chunking, and entity extraction. A subtask of information extraction that seeks to locate and classify named entity mentions in unstructured text into pre-defined categories such as the person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc."], "tags": [], "sources": ["wikipedia"]}
 {"term": "named graph", "definitions_en": ["A key concept of Semantic Web architecture in which a set of Resource Description Framework statements (a graph) are identified using a URI, allowing descriptions to be made of that set of statements such as context, provenance information or other such metadata. Named graphs are a simple extension of the RDF data model through which graphs can be created but the model lacks an effective means of distinguishing between them once published on the Web at large."], "tags": [], "sources": ["wikipedia"]}
-{"term": "natural language generation", "definitions_en": ["A software process that transforms structured data into plain-English content. It can be used to produce long-form content for organizations to automate custom reports, as well as produce custom content for a web or mobile application. It can also be used to generate short blurbs of text in interactive conversations (a chatbot) which might even be read out loud by a text-to-speech system."], "tags": [], "sources": ["wikipedia"]}
+{"term": "natural language generation", "definitions_en": ["A software process that transforms structured data into plain-English content. It can be used to produce long-form content for organizations to automate custom reports, as well as produce custom content for a web or mobile application. It can also be used to generate short blurbs of text in interactive conversations (a chatbot) which might even be read out loud by a text-to-speech system.", "All tasks related to generating text (for instance, Write With Transformers, translation)."], "tags": [], "sources": ["wikipedia", "huggingface"]}
 {"term": "natural language programming", "definitions_en": ["An ontology-assisted way of programming in terms of natural-language sentences, e.g. English."], "tags": [], "sources": ["wikipedia"]}
 {"term": "network motif", "definitions_en": ["All networks, including biological networks, social networks, technological networks (e.g., computer networks and electrical circuits) and more, can be represented as graphs, which include a wide variety of subgraphs. One important local property of networks are so-called network motifs, which are defined as recurrent and statistically significant sub-graphs or patterns."], "tags": [], "sources": ["wikipedia"]}
 {"term": "neural machine translation", "definitions_en": ["An approach to machine translation that uses a large artificial neural network to predict the likelihood of a sequence of words, typically modeling entire sentences in a single integrated model."], "tags": [], "sources": ["wikipedia"]}
@@ -1012,7 +1012,7 @@
 {"term": "reasoning system", "definitions_en": ["In information technology a reasoning system is a software system that generates conclusions from available knowledge using logical techniques such as deduction and induction. Reasoning systems play an important role in the implementation of artificial intelligence and knowledge-based systems."], "tags": [], "sources": ["wikipedia"]}
 {"term": "recursive self-improvement", "definitions_en": ["Process in which early artificial general intelligence (AGI) systems rewrite their own computer code, causing an intelligence explosion resulting from enhancing their own capabilities and intellectual capacity, theoretically resulting in superintelligence."], "tags": [], "sources": ["wikipedia"]}
 {"term": "regression analysis", "definitions_en": ["A set of statistical processes for estimating the relationships between a dependent variable (often called the outcome or response variable, or label in machine learning) and one or more error-free independent variables (often called regressors, predictors, covariates, explanatory variables, or features). The most common form of regression analysis is linear regression, in which one finds the line (or a more complex linear combination) that most closely fits the data according to a specific mathematical criterion."], "tags": [], "sources": ["wikipedia"]}
-{"term": "representation learning", "definitions_en": ["See feature learning."], "tags": [], "sources": ["wikipedia"]}
+{"term": "representation learning", "definitions_en": ["See feature learning.", "A subfield of machine learning which focuses on learning meaningful representations of raw data. Some examples of representation learning techniques include word embeddings, autoencoders, and Generative Adversarial Networks (GANs)."], "tags": [], "sources": ["wikipedia", "huggingface"]}
 {"term": "reservoir computing", "definitions_en": ["A framework for computation that may be viewed as an extension of neural networks. Typically an input signal is fed into a fixed (random) dynamical system called a reservoir and the dynamics of the reservoir map the input to a higher dimension. Then a simple readout mechanism is trained to read the state of the reservoir and map it to the desired output. The main benefit is that training is performed only at the readout stage and the reservoir is fixed. Liquid-state machines and echo state networks are two major types of reservoir computing."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Resource Description Framework", "definitions_en": ["A family of World Wide Web Consortium (W3C) specifications originally designed as a metadata data model. It has come to be used as a general method for conceptual description or modeling of information that is implemented in web resources, using a variety of syntax notations and data serialization formats. It is also used in knowledge management applications."], "tags": [], "sources": ["wikipedia"]}
 {"term": "restricted Boltzmann machine", "definitions_en": ["A generative stochastic artificial neural network that can learn a probability distribution over its set of inputs."], "tags": [], "sources": ["wikipedia"]}
@@ -1050,7 +1050,7 @@
 {"term": "Stanford Research Institute Problem Solver", "definitions_en": ["An automated planner developed by Richard Fikes and Nils Nilsson in 1971 at SRI International."], "tags": [], "sources": ["wikipedia"]}
 {"term": "subject-matter expert", "definitions_en": ["A person who has accumulated great knowledge in a particular field or topic, demonstrated by the person's degree, licensure, and/or through years of professional experience with the subject."], "tags": [], "sources": ["wikipedia"]}
 {"term": "superintelligence", "definitions_en": ["A hypothetical agent that possesses intelligence far surpassing that of the brightest and most gifted human minds. Superintelligence may also refer to a property of problem-solving systems (e.g., superintelligent language translators or engineering assistants) whether or not these high-level intellectual competencies are embodied in agents that act within the physical world. A superintelligence may or may not be created by an intelligence explosion and be associated with a technological singularity."], "tags": [], "sources": ["wikipedia"]}
-{"term": "supervised learning", "definitions_en": ["The machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a \"reasonable\" way (see inductive bias)."], "tags": [], "sources": ["wikipedia"]}
+{"term": "supervised learning", "definitions_en": ["The machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a \"reasonable\" way (see inductive bias).", "A form of model training that directly uses labeled data to correct and instruct model performance. Data is fed into the model being trained, and its predictions are compared to the known labels. The model updates its weights based on how incorrect its predictions were, and the process is repeated to optimize model performance."], "tags": [], "sources": ["wikipedia", "huggingface"]}
 {"term": "support vector machines", "definitions_en": ["In machine learning, support vector machines (SVMs, also support vector networks) are supervised learning models with associated learning algorithms that analyze data used for classification and regression."], "tags": [], "sources": ["wikipedia"]}
 {"term": "swarm intelligence", "definitions_en": ["The collective behavior of decentralized, self-organized systems, either natural or artificial. The expression was introduced in the context of cellular robotic systems."], "tags": [], "sources": ["wikipedia"]}
 {"term": "symbolic artificial intelligence", "definitions_en": ["The term for the collection of all methods in artificial intelligence research that are based on high-level \"symbolic\" (human-readable) representations of problems, logic, and search."], "tags": [], "sources": ["wikipedia"]}
@@ -1072,7 +1072,7 @@
 {"term": "Turing machine", "definitions_en": ["A mathematical model of computation describing an abstract machine that manipulates symbols on a strip of tape according to a table of rules. Despite the model's simplicity, it is capable of implementing any algorithm."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Turing test", "definitions_en": ["A test of a machine's ability to exhibit intelligent behaviour equivalent to, or indistinguishable from, that of a human, developed by Alan Turing in 1950. Turing proposed that a human evaluator would judge natural language conversations between a human and a machine designed to generate human-like responses. The evaluator would be aware that one of the two partners in conversation is a machine, and all participants would be separated from one another. The conversation would be limited to a text-only channel such as a computer keyboard and screen so the result would not depend on the machine's ability to render words as speech. If the evaluator cannot reliably tell the machine from the human, the machine is said to have passed the test. The test results do not depend on the machine's ability to give correct answers to questions, only how closely its answers resemble those a human would give."], "tags": [], "sources": ["wikipedia"]}
 {"term": "type system", "definitions_en": ["In programming languages, a set of rules that assigns a property called type to the various constructs of a computer program, such as variables, expressions, functions, or modules. These types formalize and enforce the otherwise implicit categories the programmer uses for algebraic data types, data structures, or other components (e.g. \"string\", \"array of float\", \"function returning boolean\"). The main purpose of a type system is to reduce possibilities for bugs in computer programs by defining interfaces between different parts of a computer program, and then checking that the parts have been connected in a consistent way. This checking can happen statically (at compile time), dynamically (at run time), or as a combination of static and dynamic checking. Type systems have other purposes as well, such as expressing business rules, enabling certain compiler optimizations, allowing for multiple dispatch, providing a form of documentation, etc."], "tags": [], "sources": ["wikipedia"]}
-{"term": "unsupervised learning", "definitions_en": ["A type of self-organized Hebbian learning that helps find previously unknown patterns in data set without pre-existing labels. It is also known as self-organization and allows modeling probability densities of given inputs. It is one of the three basic paradigms of machine learning, alongside supervised and reinforcement learning. Semi-supervised learning has also been described and is a hybridization of supervised and unsupervised techniques."], "tags": [], "sources": ["wikipedia"]}
+{"term": "unsupervised learning", "definitions_en": ["A type of self-organized Hebbian learning that helps find previously unknown patterns in data set without pre-existing labels. It is also known as self-organization and allows modeling probability densities of given inputs. It is one of the three basic paradigms of machine learning, alongside supervised and reinforcement learning. Semi-supervised learning has also been described and is a hybridization of supervised and unsupervised techniques.", "A form of model training in which data provided to the model is not labeled. Unsupervised learning techniques leverage statistical information of the data distribution to find patterns useful for the task at hand."], "tags": [], "sources": ["wikipedia", "huggingface"]}
 {"term": "vision processing unit", "definitions_en": ["A type of microprocessor designed to accelerate machine vision tasks."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Value-alignment complete", "definitions_en": ["Analogous to an AI-complete problem, a value-alignment complete problem is a problem where the AI control problem needs to be fully solved to solve it."], "tags": [], "sources": ["wikipedia"]}
 {"term": "Watson", "definitions_en": ["A question-answering computer system capable of answering questions posed in natural language, developed in IBM's DeepQA project by a research team led by principal investigator David Ferrucci. Watson was named after IBM's first CEO, industrialist Thomas J. Watson."], "tags": [], "sources": ["wikipedia"]}
@@ -1080,6 +1080,36 @@
 {"term": "weak supervision", "definitions_en": ["See semi-supervised learning."], "tags": [], "sources": ["wikipedia"]}
 {"term": "world model", "definitions_en": ["A type of neural network that understands the dynamics of the real world, including physics and spatial properties. These models can use input data, including text, image, video, and movement, to generate videos that simulate realistic physical environments."], "tags": [], "sources": ["wikipedia", "manual"]}
 {"term": "XGBoost", "definitions_en": ["Short for eXtreme Gradient Boosting, XGBoost is an open-source software library which provides a regularizing gradient boosting framework for multiple programming languages."], "tags": [], "sources": ["wikipedia"]}
+{"term": "attention mask", "definitions_en": ["The attention mask is an optional argument used when batching sequences together. This argument indicates to the model which tokens should be attended to, and which should not. For example, consider these two sequences: python >>> from transformers import BertTokenizer >>> tokenizer = BertTokenizer.from_pretrained(\"google-bert/bert-base-cased\") >>> sequence_a = \"This is a short sequence.\" >>> sequence_b = \"This is a rather long sequence. It is at least longer than the sequence A.\" >>> encoded_sequence_a = tokenizer(sequence_a)[\"input_ids\"] >>> encoded_sequence_b = tokenizer(sequence_b)[\"input_ids\"] The encoded versions have different lengths: python >>> len(encoded_sequence_a), len(encoded_sequence_b) (8, 19) Therefore, we can't put them together in the same tensor as-is. The first sequence needs to be padded up to the length of the second one, or the second one needs to be truncated down to the length of the first one. In the first case, the list of IDs will be extended by the padding indices. We can pass a list to the tokenizer and ask it to pad like this: python >>> padded_sequences = tokenizer([sequence_a, sequence_b], padding=True) We can see that 0s have been added on the right of the first sentence to make it the same length as the second one: python >>> padded_sequences[\"input_ids\"] [[101, 1188, 1110, 170, 1603, 4954, 119, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [101, 1188, 1110, 170, 1897, 1263, 4954, 119, 1135, 1110, 1120, 1655, 2039, 1190, 1103, 4954, 138, 119, 102]] This can then be converted into a tensor in PyTorch. The attention mask is a binary tensor indicating the position of the padded indices so that the model does not attend to them. For the [BertTokenizer], 1 indicates a value that should be attended to, while 0 indicates a padded value. This attention mask is in the dictionary returned by the tokenizer under the key \"attention_mask\": python >>> padded_sequences[\"attention_mask\"] [[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]"], "tags": [], "sources": ["huggingface"]}
+{"term": "autoencoding models", "definitions_en": ["See encoder models and masked language modeling"], "tags": [], "sources": ["huggingface"]}
+{"term": "autoregressive models", "definitions_en": ["See causal language modeling and decoder models"], "tags": [], "sources": ["huggingface"]}
+{"term": "backbone", "definitions_en": ["The backbone is the network (embeddings and layers) that outputs the raw hidden states or features. It is usually connected to a head which accepts the features as its input to make a prediction. For example, [ViTModel] is a backbone without a specific head on top. Other models can also use [ViTModel] as a backbone such as DPT."], "tags": [], "sources": ["huggingface"]}
+{"term": "causal language modeling", "definitions_en": ["A pretraining task where the model reads the texts in order and has to predict the next word. It's usually done by reading the whole sentence but using a mask inside the model to hide the future tokens at a certain timestep."], "tags": [], "sources": ["huggingface"]}
+{"term": "channel", "definitions_en": ["Color images are made up of some combination of values in three channels: red, green, and blue (RGB) and grayscale images only have one channel. In 🤗 Transformers, the channel can be the first or last dimension of an image's tensor: [n_channels, height, width] or [height, width, n_channels]."], "tags": [], "sources": ["huggingface"]}
+{"term": "connectionist temporal classification", "definitions_en": ["An algorithm which allows a model to learn without knowing exactly how the input and output are aligned; CTC calculates the distribution of all possible outputs for a given input and chooses the most likely output from it. CTC is commonly used in speech recognition tasks because speech doesn't always cleanly align with the transcript for a variety of reasons such as a speaker's different speech rates."], "tags": [], "sources": ["huggingface"]}
+{"term": "DataParallel", "definitions_en": ["Parallelism technique for training on multiple GPUs where the same setup is replicated multiple times, with each instance receiving a distinct data slice. The processing is done in parallel and all setups are synchronized at the end of each training step. Learn more about DataParallel."], "tags": [], "sources": ["huggingface"]}
+{"term": "decoder input IDs", "definitions_en": ["This input is specific to encoder-decoder models, and contains the input IDs that will be fed to the decoder. These inputs should be used for sequence to sequence tasks, such as translation or summarization, and are usually built in a way specific to each model. Most encoder-decoder models (BART, T5) create their decoder_input_ids on their own from the labels. In such models, passing the labels is the preferred way to handle training. Please check each model's docs to see how they handle these input IDs for sequence to sequence training."], "tags": [], "sources": ["huggingface"]}
+{"term": "decoder models", "definitions_en": ["Also referred to as autoregressive models, decoder models involve a pretraining task (called causal language modeling) where the model reads the texts in order and has to predict the next word. It's usually done by reading the whole sentence with a mask to hide future tokens at a certain timestep."], "tags": [], "sources": ["huggingface"]}
+{"term": "encoder models", "definitions_en": ["Also known as autoencoding models, encoder models take an input (such as text or images) and transform them into a condensed numerical representation called an embedding. Oftentimes, encoder models are pretrained using techniques like masked language modeling, which masks parts of the input sequence and forces the model to create more meaningful representations."], "tags": [], "sources": ["huggingface"]}
+{"term": "feed forward chunking", "definitions_en": ["In each residual attention block in transformers the self-attention layer is usually followed by 2 feed forward layers. The intermediate embedding size of the feed forward layers is often bigger than the hidden size of the model (e.g., for google-bert/bert-base-uncased). For an input of size [batch_size, sequence_length], the memory required to store the intermediate feed forward embeddings [batch_size, sequence_length, config.intermediate_size] can account for a large fraction of the memory use. The authors of Reformer: The Efficient Transformer noticed that since the computation is independent of the sequence_length dimension, it is mathematically equivalent to compute the output embeddings of both feed forward layers [batch_size, config.hidden_size]_0, ..., [batch_size, config.hidden_size]_n individually and concat them afterward to [batch_size, sequence_length, config.hidden_size] with n = sequence_length, which trades increased computation time against reduced memory use, but yields a mathematically **equivalent** result. For models employing the function [apply_chunking_to_forward], the chunk_size defines the number of output embeddings that are computed in parallel and thus defines the trade-off between memory and time complexity. If chunk_size is set to 0, no feed forward chunking is done."], "tags": [], "sources": ["huggingface"]}
+{"term": "finetuned models", "definitions_en": ["Finetuning is a form of transfer learning which involves taking a pretrained model, freezing its weights, and replacing the output layer with a newly added model head. The model head is trained on your target dataset. See the Fine-tune a pretrained model tutorial for more details, and learn how to fine-tune models with 🤗 Transformers."], "tags": [], "sources": ["huggingface"]}
+{"term": "head", "definitions_en": ["The model head refers to the last layer of a neural network that accepts the raw hidden states and projects them onto a different dimension. There is a different model head for each task. For example: * [GPT2ForSequenceClassification] is a sequence classification head - a linear layer - on top of the base [GPT2Model]. * [ViTForImageClassification] is an image classification head - a linear layer on top of the final hidden state of the CLS token - on top of the base [ViTModel]. * [Wav2Vec2ForCTC] is a language modeling head with CTC on top of the base [Wav2Vec2Model]."], "tags": [], "sources": ["huggingface"]}
+{"term": "image patch", "definitions_en": ["Vision-based Transformers models split an image into smaller patches which are linearly embedded, and then passed as a sequence to the model. You can find the patch_size - or resolution - of the model in its configuration."], "tags": [], "sources": ["huggingface"]}
+{"term": "input IDs", "definitions_en": ["The input ids are often the only required parameters to be passed to the model as input. They are token indices, numerical representations of tokens building the sequences that will be used as input by the model. Each tokenizer works differently but the underlying mechanism remains the same. Here's an example using the BERT tokenizer, which is a WordPiece tokenizer: python >>> from transformers import BertTokenizer >>> tokenizer = BertTokenizer.from_pretrained(\"google-bert/bert-base-cased\") >>> sequence = \"A Titan RTX has 24GB of VRAM\" The tokenizer takes care of splitting the sequence into tokens available in the tokenizer vocabulary. python >>> tokenized_sequence = tokenizer.tokenize(sequence) The tokens are either words or subwords. Here for instance, \"VRAM\" wasn't in the model vocabulary, so it's been split in \"V\", \"RA\" and \"M\". To indicate those tokens are not separate words but parts of the same word, a double-hash prefix is added for \"RA\" and \"M\": python >>> print(tokenized_sequence) ['A', 'Titan', 'R', '##T', '##X', 'has', '24', '##GB', 'of', 'V', '##RA', '##M'] These tokens can then be converted into IDs which are understandable by the model. This can be done by directly feeding the sentence to the tokenizer, which leverages the Rust implementation of 🤗 Tokenizers for peak performance. python >>> inputs = tokenizer(sequence) The tokenizer returns a dictionary with all the arguments necessary for its corresponding model to work properly. The token indices are under the key input_ids: python >>> encoded_sequence = inputs[\"input_ids\"] >>> print(encoded_sequence) [101, 138, 18696, 155, 1942, 3190, 1144, 1572, 13745, 1104, 159, 9664, 2107, 102] Note that the tokenizer automatically adds \"special tokens\" (if the associated model relies on them) which are special IDs the model sometimes uses. If we decode the previous sequence of ids, python >>> decoded_sequence = tokenizer.decode(encoded_sequence) we will see python >>> print(decoded_sequence) [CLS] A Titan RTX has 24GB of VRAM [SEP] because this is the way a [BertModel] is going to expect its inputs."], "tags": [], "sources": ["huggingface"]}
+{"term": "labels", "definitions_en": ["The labels are an optional argument which can be passed in order for the model to compute the loss itself. These labels should be the expected prediction of the model: it will use the standard loss in order to compute the loss between its predictions and the expected value (the label). These labels are different according to the model head, for example: - For sequence classification models, ([BertForSequenceClassification]), the model expects a tensor of dimension (batch_size) with each value of the batch corresponding to the expected label of the entire sequence. - For token classification models, ([BertForTokenClassification]), the model expects a tensor of dimension (batch_size, seq_length) with each value corresponding to the expected label of each individual token. - For masked language modeling, ([BertForMaskedLM]), the model expects a tensor of dimension (batch_size, seq_length) with each value corresponding to the expected label of each individual token: the labels being the token ID for the masked token, and values to be ignored for the rest (usually -100). - For sequence to sequence tasks, ([BartForConditionalGeneration], [MBartForConditionalGeneration]), the model expects a tensor of dimension (batch_size, tgt_seq_length) with each value corresponding to the target sequences associated with each input sequence. During training, both BART and T5 will make the appropriate decoder_input_ids and decoder attention masks internally. They usually do not need to be supplied. This does not apply to models leveraging the Encoder-Decoder framework. - For image classification models, ([ViTForImageClassification]), the model expects a tensor of dimension (batch_size) with each value of the batch corresponding to the expected label of each individual image. - For semantic segmentation models, ([SegformerForSemanticSegmentation]), the model expects a tensor of dimension (batch_size, height, width) with each value of the batch corresponding to the expected label of each individual pixel. - For object detection models, ([DetrForObjectDetection]), the model expects a list of dictionaries with a class_labels and boxes key where each value of the batch corresponds to the expected label and number of bounding boxes of each individual image. - For automatic speech recognition models, ([Wav2Vec2ForCTC]), the model expects a tensor of dimension (batch_size, target_length) with each value corresponding to the expected label of each individual token. Each model's labels may be different, so be sure to always check the documentation of each model for more information about their specific labels! The base models ([BertModel]) do not accept labels, as these are the base transformer models, simply outputting features."], "tags": [], "sources": ["huggingface"]}
+{"term": "large language models", "definitions_en": ["A generic term that refers to transformer language models (GPT-3, BLOOM, OPT) that were trained on a large quantity of data. These models also tend to have a large number of learnable parameters (e.g. 175 billion for GPT-3)."], "tags": [], "sources": ["huggingface"]}
+{"term": "masked language modeling", "definitions_en": ["A pretraining task where the model sees a corrupted version of the texts, usually done by masking some tokens randomly, and has to predict the original text."], "tags": [], "sources": ["huggingface"]}
+{"term": "multimodal", "definitions_en": ["A task that combines texts with another kind of inputs (for instance images)."], "tags": [], "sources": ["huggingface"]}
+{"term": "PipelineParallel", "definitions_en": ["Parallelism technique in which the model is split up vertically (layer-level) across multiple GPUs, so that only one or several layers of the model are placed on a single GPU. Each GPU processes in parallel different stages of the pipeline and working on a small chunk of the batch. Learn more about PipelineParallel."], "tags": [], "sources": ["huggingface"]}
+{"term": "pixel values", "definitions_en": ["A tensor of the numerical representations of an image that is passed to a model. The pixel values have a shape of [batch_size, num_channels, height, width], and are generated from an image processor."], "tags": [], "sources": ["huggingface"]}
+{"term": "position IDs", "definitions_en": ["Contrary to RNNs that have the position of each token embedded within them, transformers are unaware of the position of each token. Therefore, the position IDs (position_ids) are used by the model to identify each token's position in the list of tokens. They are an optional parameter. If no position_ids are passed to the model, the IDs are automatically created as absolute positional embeddings. Absolute positional embeddings are selected in the range [0, config.max_position_embeddings - 1]. Some models use other types of positional embeddings, such as sinusoidal position embeddings or relative position embeddings."], "tags": [], "sources": ["huggingface"]}
+{"term": "pretrained model", "definitions_en": ["A model that has been pretrained on some data (for instance all of Wikipedia). Pretraining methods involve a self-supervised objective, which can be reading the text and trying to predict the next word (see causal language modeling) or masking some words and trying to predict them (see masked language modeling). Speech and vision models have their own pretraining objectives. For example, Wav2Vec2 is a speech model pretrained on a contrastive task which requires the model to identify the \"true\" speech representation from a set of \"false\" speech representations. On the other hand, BEiT is a vision model pretrained on a masked image modeling task which masks some of the image patches and requires the model to predict the masked patches (similar to the masked language modeling objective)."], "tags": [], "sources": ["huggingface"]}
+{"term": "sampling rate", "definitions_en": ["A measurement in hertz of the number of samples (the audio signal) taken per second. The sampling rate is a result of discretizing a continuous signal such as speech."], "tags": [], "sources": ["huggingface"]}
+{"term": "sequence-to-sequence", "definitions_en": ["Models that generate a new sequence from an input, like translation models, or summarization models (such as Bart or T5)."], "tags": [], "sources": ["huggingface"]}
+{"term": "Sharded DDP", "definitions_en": ["Another name for the foundational ZeRO concept as used by various other implementations of ZeRO."], "tags": [], "sources": ["huggingface"]}
+{"term": "Tensor Parallelism", "definitions_en": ["Parallelism technique for training on multiple GPUs in which each tensor is split up into multiple chunks, so instead of having the whole tensor reside on a single GPU, each shard of the tensor resides on its designated GPU. Shards get processed separately and in parallel on different GPUs and the results are synced at the end of the processing step. This is what is sometimes called horizontal parallelism, as the splitting happens on horizontal level. Learn more about Tensor Parallelism here."], "tags": [], "sources": ["huggingface"]}
+{"term": "token type IDs", "definitions_en": ["Some models' purpose is to do classification on pairs of sentences or question answering. These require two different sequences to be joined in a single \"input_ids\" entry, which usually is performed with the help of special tokens, such as the classifier ([CLS]) and separator ([SEP]) tokens. For example, the BERT model builds its two sequence input as such: python >>> # [CLS] SEQUENCE_A [SEP] SEQUENCE_B [SEP] We can use our tokenizer to automatically generate such a sentence by passing the two sequences to tokenizer as two arguments (and not a list, like before) like this: python >>> from transformers import BertTokenizer >>> tokenizer = BertTokenizer.from_pretrained(\"google-bert/bert-base-cased\") >>> sequence_a = \"HuggingFace is based in NYC\" >>> sequence_b = \"Where is HuggingFace based?\" >>> encoded_dict = tokenizer(sequence_a, sequence_b) >>> decoded = tokenizer.decode(encoded_dict[\"input_ids\"]) which will return: python >>> print(decoded) [CLS] HuggingFace is based in NYC [SEP] Where is HuggingFace based? [SEP] This is enough for some models to understand where one sequence ends and where another begins. However, other models, such as BERT, also deploy token type IDs (also called segment IDs). They are represented as a binary mask identifying the two types of sequence in the model. The tokenizer returns this mask as the \"token_type_ids\" entry: python >>> encoded_dict[\"token_type_ids\"] [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1] The first sequence, the \"context\" used for the question, has all its tokens represented by a 0, whereas the second sequence, corresponding to the \"question\", has all its tokens represented by a 1. Some models, like [XLNetModel] use an additional token represented by a 2."], "tags": [], "sources": ["huggingface"]}
+{"term": "Zero Redundancy Optimizer", "definitions_en": ["Parallelism technique which performs sharding of the tensors somewhat similar to TensorParallel, except the whole tensor gets reconstructed in time for a forward or backward computation, therefore the model doesn't need to be modified. This method also supports various offloading techniques to compensate for limited GPU memory. Learn more about ZeRO here."], "tags": [], "sources": ["huggingface"]}
 {"term": "QLoRA", "definitions_en": [], "tags": [], "sources": ["manual"]}
 {"term": "PEFT", "definitions_en": [], "tags": [], "sources": ["manual"]}
 {"term": "RLHF", "definitions_en": [], "tags": [], "sources": ["manual"]}
@@ -1124,3 +1154,857 @@
 {"term": "GPU", "definitions_en": [], "tags": [], "sources": ["manual"]}
 {"term": "CUDA", "definitions_en": [], "tags": [], "sources": ["manual"]}
 {"term": "FLOPS", "definitions_en": [], "tags": [], "sources": ["manual"]}
+{"term": "(model) checkpoint", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "3D Gaussian splatting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "absolute percentage error", "definitions_en": ["Also abbreviated as APE."], "tags": [], "sources": ["mined"]}
+{"term": "abstract syntax tree", "definitions_en": ["Also abbreviated as AST."], "tags": [], "sources": ["mined"]}
+{"term": "action model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "activation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "activation patching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "activation quantization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "activation steering", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "actor-critic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adapter", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adaptive computation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adjusted rand index", "definitions_en": ["Also abbreviated as ARI."], "tags": [], "sources": ["mined"]}
+{"term": "advantage estimation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adversarial", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adversarial learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "adversarial robustness", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "affine", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agent benchmark", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agent harness", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agent memory", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agentic ai", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agentic framework", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agentic RAG", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agentic reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "agentic system", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "AI agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "alfworld", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "alignment", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "alignment tax", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "all-to-all", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "AlpacaEval", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "anchor box", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "any-to-any generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "approximate inference", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "arena-hard", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "association rule mining", "definitions_en": ["Also abbreviated as ARM."], "tags": [], "sources": ["mined"]}
+{"term": "attack success rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "attention head", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "attention matching", "definitions_en": ["Also abbreviated as AM."], "tags": [], "sources": ["mined"]}
+{"term": "attention sink", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "autism spectrum disorder", "definitions_en": ["Also abbreviated as ASD."], "tags": [], "sources": ["mined"]}
+{"term": "automatic differentiation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "autoregressive", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "auxiliary-loss-free load balancing", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "average pooling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "average precision", "definitions_en": ["Also abbreviated as AP."], "tags": [], "sources": ["mined"]}
+{"term": "AWQ", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "balanced accuracy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bandit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "batch invariance", "definitions_en": ["Also abbreviated as BI."], "tags": [], "sources": ["mined"]}
+{"term": "Bayes-consistent tempering", "definitions_en": ["Also abbreviated as BCT."], "tags": [], "sources": ["mined"]}
+{"term": "bayesian", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "beam search", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "behavioral cloning", "definitions_en": ["Also abbreviated as BC."], "tags": [], "sources": ["mined"]}
+{"term": "belief-propagation", "definitions_en": ["Also abbreviated as BP."], "tags": [], "sources": ["mined"]}
+{"term": "benchmark", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "benchmark dataset", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "benchmark leakage", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "best-of-n", "definitions_en": ["Also abbreviated as BoN."], "tags": [], "sources": ["mined"]}
+{"term": "best-of-n sampling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bfloat16", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bi-encoder", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bidirectional recurrent neural network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "binomial distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bird's-eye view", "definitions_en": ["Also abbreviated as BEV."], "tags": [], "sources": ["mined"]}
+{"term": "black-box", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "bootstrap confidence interval", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Bradley-Terry model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "calibration", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "calibration error", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "camera pose", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "camouflaged object detection", "definitions_en": ["Also abbreviated as COD."], "tags": [], "sources": ["mined"]}
+{"term": "capacitated vehicle routing problem", "definitions_en": ["Also abbreviated as CVRP."], "tags": [], "sources": ["mined"]}
+{"term": "captioning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "catastrophic forgetting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "causality", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "central target word", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "chain rule", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "chain-of-dynamic", "definitions_en": ["Also abbreviated as CoD."], "tags": [], "sources": ["mined"]}
+{"term": "chain-of-thought faithfulness", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "channel state information", "definitions_en": ["Also abbreviated as CSI."], "tags": [], "sources": ["mined"]}
+{"term": "character error rate", "definitions_en": ["Also abbreviated as CER."], "tags": [], "sources": ["mined"]}
+{"term": "chart understanding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "chatbot arena", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cifar-10", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cifar-100", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "circuit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "class activation map", "definitions_en": ["Also abbreviated as CAM."], "tags": [], "sources": ["mined"]}
+{"term": "class imbalance", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "class-incremental learning", "definitions_en": ["Also abbreviated as CIL."], "tags": [], "sources": ["mined"]}
+{"term": "classification accuracy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "classifier-free guidance", "definitions_en": ["Also abbreviated as CFG."], "tags": [], "sources": ["mined"]}
+{"term": "Claude Code", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "claude opus", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "click-through rate", "definitions_en": ["Also abbreviated as CTR."], "tags": [], "sources": ["mined"]}
+{"term": "closed-form solution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "closed-source", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cloud computing", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "coarse-to-fine", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "code generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "codebook", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "coding agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cognitive diagnosis model", "definitions_en": ["Also abbreviated as CDM."], "tags": [], "sources": ["mined"]}
+{"term": "ColBERT", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "combinatory categorial grammar", "definitions_en": ["Also abbreviated as CCG."], "tags": [], "sources": ["mined"]}
+{"term": "command-line interface", "definitions_en": ["Also abbreviated as CLI."], "tags": [], "sources": ["mined"]}
+{"term": "computational graph", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "compute-optimal", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "computer-use agent", "definitions_en": ["Also abbreviated as CUA."], "tags": [], "sources": ["mined"]}
+{"term": "computerized adaptive testing", "definitions_en": ["Also abbreviated as CAT."], "tags": [], "sources": ["mined"]}
+{"term": "concept bottleneck model", "definitions_en": ["Also abbreviated as CBM."], "tags": [], "sources": ["mined"]}
+{"term": "concept embedding model", "definitions_en": ["Also abbreviated as CEM."], "tags": [], "sources": ["mined"]}
+{"term": "conditional average treatment effect", "definitions_en": ["Also abbreviated as CATE."], "tags": [], "sources": ["mined"]}
+{"term": "conditional distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "conditional flow matching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "conditional flow model", "definitions_en": ["Also abbreviated as CFM."], "tags": [], "sources": ["mined"]}
+{"term": "conditional probability distribution", "definitions_en": ["Also abbreviated as CPD."], "tags": [], "sources": ["mined"]}
+{"term": "confidence interval", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "conformal prediction", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "consistency model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "constrained markov decision process", "definitions_en": ["Also abbreviated as CMDP."], "tags": [], "sources": ["mined"]}
+{"term": "content loss", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "context compaction", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "context compression", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "context-aware decoding", "definitions_en": ["Also abbreviated as CAD."], "tags": [], "sources": ["mined"]}
+{"term": "continual active learning", "definitions_en": ["Also abbreviated as CAL."], "tags": [], "sources": ["mined"]}
+{"term": "continued pre-training", "definitions_en": ["Also abbreviated as CPT."], "tags": [], "sources": ["mined"]}
+{"term": "continuous batching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "continuous ranked probability score", "definitions_en": ["Also abbreviated as CRPS."], "tags": [], "sources": ["mined"]}
+{"term": "contrastive language-image pretraining", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "contrastive learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "contrastive pretraining", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "convex combination", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "convolutional block attention module", "definitions_en": ["Also abbreviated as CBAM."], "tags": [], "sources": ["mined"]}
+{"term": "convolutional recurrent neural network", "definitions_en": ["Also abbreviated as CRNN."], "tags": [], "sources": ["mined"]}
+{"term": "coreference resolution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "coreset selection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "corpus", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "corpus poisoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "correlation coefficient", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cost function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cost-to-go", "definitions_en": ["Also abbreviated as CTG."], "tags": [], "sources": ["mined"]}
+{"term": "counterfactual", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "counterfactual test-time augmentation", "definitions_en": ["Also abbreviated as CTTA."], "tags": [], "sources": ["mined"]}
+{"term": "courant-friedrichs-lewy", "definitions_en": ["Also abbreviated as CFL."], "tags": [], "sources": ["mined"]}
+{"term": "covariate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "credit assignment", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross correlation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross entropy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross validation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross-attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross-domain", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross-encoder", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross-lingual", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "cross-modal", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "crystal structure prediction", "definitions_en": ["Also abbreviated as CSP."], "tags": [], "sources": ["mined"]}
+{"term": "cuda graph", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "d gaussian splatting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data attribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data consistency", "definitions_en": ["Also abbreviated as DC."], "tags": [], "sources": ["mined"]}
+{"term": "data contamination", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data mismatch", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data mixture", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data poisoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data selection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "data valuation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "decentralized learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "decision transformer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "decision-making", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "decision-pretrained transformer", "definitions_en": ["Also abbreviated as DPT."], "tags": [], "sources": ["mined"]}
+{"term": "decontamination", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "decoupling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "deep fusion memory", "definitions_en": ["Also abbreviated as DFM."], "tags": [], "sources": ["mined"]}
+{"term": "deep learning model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "deep reinforcement learning", "definitions_en": ["Also abbreviated as DRL."], "tags": [], "sources": ["mined"]}
+{"term": "deepseek", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "deferred initialization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "delta rule", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "denoiser", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "denoising step", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "dense retrieval", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "densely connected network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "depth estimation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "development set", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "dice score coefficient", "definitions_en": ["Also abbreviated as DSC."], "tags": [], "sources": ["mined"]}
+{"term": "differential attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "difficulty-aware prompt sampling", "definitions_en": ["Also abbreviated as DAPS."], "tags": [], "sources": ["mined"]}
+{"term": "diffusion language model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "diffusion policy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "diffusion transformer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "diffusion vision-language model", "definitions_en": ["Also abbreviated as DVLM."], "tags": [], "sources": ["mined"]}
+{"term": "directed acyclic graph", "definitions_en": ["Also abbreviated as DAG."], "tags": [], "sources": ["mined"]}
+{"term": "directed cyclic graph", "definitions_en": ["Also abbreviated as DCG."], "tags": [], "sources": ["mined"]}
+{"term": "discrete cosine transform", "definitions_en": ["Also abbreviated as DCT."], "tags": [], "sources": ["mined"]}
+{"term": "discrete diffusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "discrete flow matching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "distractor", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "distribution matching distillation", "definitions_en": ["Also abbreviated as DMD."], "tags": [], "sources": ["mined"]}
+{"term": "distribution shift", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "distributional reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "distributionally robust optimization", "definitions_en": ["Also abbreviated as DRO."], "tags": [], "sources": ["mined"]}
+{"term": "document understanding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "domain adaptation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "domain generalization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "domain-specific language", "definitions_en": ["Also abbreviated as DSL."], "tags": [], "sources": ["mined"]}
+{"term": "doppler velocity log", "definitions_en": ["Also abbreviated as DVL."], "tags": [], "sources": ["mined"]}
+{"term": "dot product", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "doubly robust", "definitions_en": ["Also abbreviated as DR."], "tags": [], "sources": ["mined"]}
+{"term": "doubly robust estimation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "downstream task", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "draft model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "dynamical system", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "early fault-tolerant quantum computing", "definitions_en": ["Also abbreviated as EFTQC."], "tags": [], "sources": ["mined"]}
+{"term": "early fusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "earth observation", "definitions_en": ["Also abbreviated as EO."], "tags": [], "sources": ["mined"]}
+{"term": "effect size", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "eigen-decomposition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "eigenvalue", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "eigenvector", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "elastic weight consolidation", "definitions_en": ["Also abbreviated as EWC."], "tags": [], "sources": ["mined"]}
+{"term": "electronic health record", "definitions_en": ["Also abbreviated as EHR."], "tags": [], "sources": ["mined"]}
+{"term": "emotion recognition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "encoder-decoder architecture", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "end-point error", "definitions_en": ["Also abbreviated as EPE."], "tags": [], "sources": ["mined"]}
+{"term": "end-to-end", "definitions_en": ["Also abbreviated as E2E."], "tags": [], "sources": ["mined"]}
+{"term": "entity linking", "definitions_en": ["Also abbreviated as EL."], "tags": [], "sources": ["mined"]}
+{"term": "entity resolution", "definitions_en": ["Also abbreviated as ER."], "tags": [], "sources": ["mined"]}
+{"term": "error rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "evaluation harness", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "execution feedback", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "expectation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "expected calibration error", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "explainability", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "explicit feedback", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "exploration bonus", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "exponential distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "exponential moving average", "definitions_en": ["Also abbreviated as EMA."], "tags": [], "sources": ["mined"]}
+{"term": "exponential weighted moving average", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "face recognition", "definitions_en": ["Also abbreviated as FR."], "tags": [], "sources": ["mined"]}
+{"term": "failure attribution", "definitions_en": ["Also abbreviated as FA."], "tags": [], "sources": ["mined"]}
+{"term": "failure mode", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "faithfulness", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "false discovery rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "feature map", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "federated unlearning", "definitions_en": ["Also abbreviated as FU."], "tags": [], "sources": ["mined"]}
+{"term": "feed-forward", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "feed-forward network", "definitions_en": ["Also abbreviated as FNN."], "tags": [], "sources": ["mined"]}
+{"term": "few-shot", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "few-step generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "finite-sample", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "flow matching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "flow-matching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "forward pass", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "fourier transform", "definitions_en": ["Also abbreviated as FT."], "tags": [], "sources": ["mined"]}
+{"term": "fp8 training", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "frontier LLM", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "fréchet distance", "definitions_en": ["Also abbreviated as FD."], "tags": [], "sources": ["mined"]}
+{"term": "full fine-tuning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "fully convolutional network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "fully-connected", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "G-Eval", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gated cross-attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gated recurrent unit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gauss-newton", "definitions_en": ["Also abbreviated as GN."], "tags": [], "sources": ["mined"]}
+{"term": "Gaussian", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Gaussian distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Gaussian noise", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gaussian process", "definitions_en": ["Also abbreviated as GP."], "tags": [], "sources": ["mined"]}
+{"term": "Gaussian splatting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "general dynamic equation", "definitions_en": ["Also abbreviated as GDE."], "tags": [], "sources": ["mined"]}
+{"term": "generalization gap", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "generalization loss", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "generalized additive model", "definitions_en": ["Also abbreviated as GAM."], "tags": [], "sources": ["mined"]}
+{"term": "generalized category discovery", "definitions_en": ["Also abbreviated as GCD."], "tags": [], "sources": ["mined"]}
+{"term": "generative modeling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "generative recommendation", "definitions_en": ["Also abbreviated as GR."], "tags": [], "sources": ["mined"]}
+{"term": "generative refinement network", "definitions_en": ["Also abbreviated as GRN."], "tags": [], "sources": ["mined"]}
+{"term": "genome-wide association study", "definitions_en": ["Also abbreviated as GWAS."], "tags": [], "sources": ["mined"]}
+{"term": "geometric confusion score", "definitions_en": ["Also abbreviated as GCS."], "tags": [], "sources": ["mined"]}
+{"term": "geometric-invariance fine-tuning", "definitions_en": ["Also abbreviated as GIFT."], "tags": [], "sources": ["mined"]}
+{"term": "global interpreter lock", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "global minimum", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GPQA", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GPT-4o", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GPTQ", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gradient-based", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Gram-Schmidt", "definitions_en": ["Also abbreviated as GS."], "tags": [], "sources": ["mined"]}
+{"term": "graph foundation model", "definitions_en": ["Also abbreviated as GFM."], "tags": [], "sources": ["mined"]}
+{"term": "graph neural network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "graphical model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "graphical user interface", "definitions_en": ["Also abbreviated as GUI."], "tags": [], "sources": ["mined"]}
+{"term": "greedy algorithm", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "greedy search", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "grokking", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "gromov-wasserstein", "definitions_en": ["Also abbreviated as GW."], "tags": [], "sources": ["mined"]}
+{"term": "ground-truth", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "group relative policy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "group relative policy optimization", "definitions_en": ["Also abbreviated as GRPO."], "tags": [], "sources": ["mined"]}
+{"term": "group-relative", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GRPO", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GSM8K", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "GUI agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hallucination detection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hallucination rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Hamiltonian Monte Carlo", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "handwritten character recognition", "definitions_en": ["Also abbreviated as HCR."], "tags": [], "sources": ["mined"]}
+{"term": "handwritten text recognition", "definitions_en": ["Also abbreviated as HTR."], "tags": [], "sources": ["mined"]}
+{"term": "hard negative", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "held-out", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "held-out set", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hidden markov model", "definitions_en": ["Also abbreviated as HMM."], "tags": [], "sources": ["mined"]}
+{"term": "hidden state", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hidden state variable", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hidden unit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hidden variable", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "HNSW", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Hugging Face", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "human activity recognition", "definitions_en": ["Also abbreviated as HAR."], "tags": [], "sources": ["mined"]}
+{"term": "human feedback", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "human-object interaction", "definitions_en": ["Also abbreviated as HOI."], "tags": [], "sources": ["mined"]}
+{"term": "human-scene interaction", "definitions_en": ["Also abbreviated as HSI."], "tags": [], "sources": ["mined"]}
+{"term": "hybrid search", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "hypothesis test", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image captioning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image editing", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image quality assessment", "definitions_en": ["Also abbreviated as IQA."], "tags": [], "sources": ["mined"]}
+{"term": "image segmentation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image tokenizer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image-text alignment", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "image-to-video", "definitions_en": ["Also abbreviated as I2V."], "tags": [], "sources": ["mined"]}
+{"term": "ImageNet", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "imitation learning", "definitions_en": ["Also abbreviated as IL."], "tags": [], "sources": ["mined"]}
+{"term": "implicit feedback", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "implicit neural representation", "definitions_en": ["Also abbreviated as INR."], "tags": [], "sources": ["mined"]}
+{"term": "in-context", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "in-context reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "in-distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "in-domain", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "independence assumption", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "indicator variable", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "indirect object identification", "definitions_en": ["Also abbreviated as IOI."], "tags": [], "sources": ["mined"]}
+{"term": "indirect prompt injection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inductive bias", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inference cost", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inference latency", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inference time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inference-time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inference-time scaling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "influence function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "instance segmentation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "instruction following", "definitions_en": ["Also abbreviated as IF."], "tags": [], "sources": ["mined"]}
+{"term": "instruction-following", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "instruction-tuned", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "inter-token latency", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "internal covariate shift", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "internal representation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "internet protocol", "definitions_en": ["Also abbreviated as IP."], "tags": [], "sources": ["mined"]}
+{"term": "isometric centroid-encoder", "definitions_en": ["Also abbreviated as ICE."], "tags": [], "sources": ["mined"]}
+{"term": "JEPA", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "joint distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "joint training", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "joint-embedding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "joint-embedding predictive architecture", "definitions_en": ["Also abbreviated as JEPA."], "tags": [], "sources": ["mined"]}
+{"term": "kernel fusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "key-value", "definitions_en": ["Also abbreviated as KV."], "tags": [], "sources": ["mined"]}
+{"term": "KL divergence", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "kl penalty", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "knapsack problem", "definitions_en": ["Also abbreviated as KP."], "tags": [], "sources": ["mined"]}
+{"term": "knowledge graph", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "knowledge graph embedding", "definitions_en": ["Also abbreviated as KGE."], "tags": [], "sources": ["mined"]}
+{"term": "knowledge graph question answering", "definitions_en": ["Also abbreviated as KGQA."], "tags": [], "sources": ["mined"]}
+{"term": "knowledge tracing", "definitions_en": ["Also abbreviated as KT."], "tags": [], "sources": ["mined"]}
+{"term": "kolmogorov-arnold network", "definitions_en": ["Also abbreviated as KAN."], "tags": [], "sources": ["mined"]}
+{"term": "Krippendorff's alpha", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "kullback-leibler", "definitions_en": ["Also abbreviated as KL."], "tags": [], "sources": ["mined"]}
+{"term": "label smoothing", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "language agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "language model agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "language modeling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "large audio-language model", "definitions_en": ["Also abbreviated as LALM."], "tags": [], "sources": ["mined"]}
+{"term": "large multimodal model", "definitions_en": ["Also abbreviated as LMM."], "tags": [], "sources": ["mined"]}
+{"term": "large vision-language model", "definitions_en": ["Also abbreviated as LVLM."], "tags": [], "sources": ["mined"]}
+{"term": "late interaction", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "latent reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "latent variable", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "latent world model", "definitions_en": ["Also abbreviated as LWM."], "tags": [], "sources": ["mined"]}
+{"term": "law of large number", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "leaderboard", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "learned image compression", "definitions_en": ["Also abbreviated as LIC."], "tags": [], "sources": ["mined"]}
+{"term": "learned representation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "learning rate schedule", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "learning with verifiable reward", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "leave-one-subject-out", "definitions_en": ["Also abbreviated as LOSO."], "tags": [], "sources": ["mined"]}
+{"term": "level-of-detail", "definitions_en": ["Also abbreviated as LoD."], "tags": [], "sources": ["mined"]}
+{"term": "LIBERO", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "line search", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "linear attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "linear discriminant analysis", "definitions_en": ["Also abbreviated as LDA."], "tags": [], "sources": ["mined"]}
+{"term": "linear independence", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "linear probe", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "linear programming", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "LLaMA-3", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "LLM agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "LLM inference", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "LLM judge", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "local maximum", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "local minimum", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "log acceptance", "definitions_en": ["Also abbreviated as LA."], "tags": [], "sources": ["mined"]}
+{"term": "log-likelihood function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "long-context", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "long-horizon", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "long-horizon task", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "long-tailed", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "long-term memory", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "loss landscape", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "low earth orbit", "definitions_en": ["Also abbreviated as LEO."], "tags": [], "sources": ["mined"]}
+{"term": "low-bit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "low-fidelity", "definitions_en": ["Also abbreviated as LF."], "tags": [], "sources": ["mined"]}
+{"term": "low-light image enhancement", "definitions_en": ["Also abbreviated as LLIE."], "tags": [], "sources": ["mined"]}
+{"term": "low-rank", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "low-resource", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "low-resource language", "definitions_en": ["Also abbreviated as LRL."], "tags": [], "sources": ["mined"]}
+{"term": "lower bound", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "LPIPS", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "machine unlearning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "macro-F1", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "mahalanobis distance", "definitions_en": ["Also abbreviated as MD."], "tags": [], "sources": ["mined"]}
+{"term": "majority voting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "mamba", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "marginalization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Markov", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "masked diffusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "masked diffusion language model", "definitions_en": ["Also abbreviated as MDLM."], "tags": [], "sources": ["mined"]}
+{"term": "masked diffusion model", "definitions_en": ["Also abbreviated as MDM."], "tags": [], "sources": ["mined"]}
+{"term": "masked image modeling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "masked multi-head attention layer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "mathematical reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "max pooling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "maximum likelihood estimator", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "maximum softmax probability", "definitions_en": ["Also abbreviated as MSP."], "tags": [], "sources": ["mined"]}
+{"term": "mean opinion score", "definitions_en": ["Also abbreviated as MOS."], "tags": [], "sources": ["mined"]}
+{"term": "mean per-joint position error", "definitions_en": ["Also abbreviated as MPJPE."], "tags": [], "sources": ["mined"]}
+{"term": "mean-field game", "definitions_en": ["Also abbreviated as MFG."], "tags": [], "sources": ["mined"]}
+{"term": "membership inference", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "memory cell", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "metacognition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "microscaling format", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "minimax", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "minorization-maximization", "definitions_en": ["Also abbreviated as MM."], "tags": [], "sources": ["mined"]}
+{"term": "miou", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "misalignment", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "mixed error rate", "definitions_en": ["Also abbreviated as MER."], "tags": [], "sources": ["mined"]}
+{"term": "mixed integer programming", "definitions_en": ["Also abbreviated as MIP."], "tags": [], "sources": ["mined"]}
+{"term": "mixed-integer linear program", "definitions_en": ["Also abbreviated as MILP."], "tags": [], "sources": ["mined"]}
+{"term": "mixture-of-expert", "definitions_en": ["Also abbreviated as MoE."], "tags": [], "sources": ["mined"]}
+{"term": "mixture-of-transformer", "definitions_en": ["Also abbreviated as MoT."], "tags": [], "sources": ["mined"]}
+{"term": "MLLM", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "modality fusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model collapse", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model flops utilization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model merging", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model organism", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model selection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model watermarking", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model weight", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model-agnostic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "model-based reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "modern standard arabic", "definitions_en": ["Also abbreviated as MSA."], "tags": [], "sources": ["mined"]}
+{"term": "monocular depth", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "monosemanticity", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "monte carlo", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "MT-Bench", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-agent reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-armed bandit", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-head latent attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-hop", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-object tracking", "definitions_en": ["Also abbreviated as MOT."], "tags": [], "sources": ["mined"]}
+{"term": "multi-teacher", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-token", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multi-token prediction", "definitions_en": ["Also abbreviated as MTP."], "tags": [], "sources": ["mined"]}
+{"term": "multimodal agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multimodal embedding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multimodal large language model", "definitions_en": ["Also abbreviated as MLLM."], "tags": [], "sources": ["mined"]}
+{"term": "multimodal RAG", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multimodal reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multinomial distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multiple instance learning", "definitions_en": ["Also abbreviated as MIL."], "tags": [], "sources": ["mined"]}
+{"term": "multiscale", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "multiscale policy optimization", "definitions_en": ["Also abbreviated as MPO."], "tags": [], "sources": ["mined"]}
+{"term": "Muon", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "mutual-information", "definitions_en": ["Also abbreviated as MI."], "tags": [], "sources": ["mined"]}
+{"term": "named entity recognition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "native multimodal model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "natural language inference", "definitions_en": ["Also abbreviated as NLI."], "tags": [], "sources": ["mined"]}
+{"term": "needle-in-a-haystack", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "negative log-likelihood", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "negative sample", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "network in network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "neural collapse", "definitions_en": ["Also abbreviated as NC."], "tags": [], "sources": ["mined"]}
+{"term": "neural radiance field", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "neural style transfer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "neural tangent kernel", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "neuro-symbolic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "neuromorphic continual learning", "definitions_en": ["Also abbreviated as NCL."], "tags": [], "sources": ["mined"]}
+{"term": "next-token prediction", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "NF4 quantization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "noise injection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "noise schedule", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "noisy intermediate-scale quantum", "definitions_en": ["Also abbreviated as NISQ."], "tags": [], "sources": ["mined"]}
+{"term": "non-maximum suppression", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "non-squashing activation function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "nonnegative matrix factorization", "definitions_en": ["Also abbreviated as NMF."], "tags": [], "sources": ["mined"]}
+{"term": "nonparametric", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "normal distribution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "novel view synthesis", "definitions_en": ["Also abbreviated as NVS."], "tags": [], "sources": ["mined"]}
+{"term": "novel-view", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "null hypothesis", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "number of function evaluation", "definitions_en": ["Also abbreviated as NFE."], "tags": [], "sources": ["mined"]}
+{"term": "object detection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "object hallucination", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "object recognition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "object-centric", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "off-policy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "off-policy evaluation", "definitions_en": ["Also abbreviated as OPE."], "tags": [], "sources": ["mined"]}
+{"term": "off-the-shelf", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "offline reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "offline-to-online reinforcement learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "omni language model", "definitions_en": ["Also abbreviated as OLM."], "tags": [], "sources": ["mined"]}
+{"term": "on-device", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "on-policy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "on-policy data", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "on-policy distillation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "on-policy self-distillation", "definitions_en": ["Also abbreviated as OPSD."], "tags": [], "sources": ["mined"]}
+{"term": "on-policy transition distillation", "definitions_en": ["Also abbreviated as OPTD."], "tags": [], "sources": ["mined"]}
+{"term": "one-sided test", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "open weight", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "open-source", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "open-vocabulary", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "open-vocabulary detection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "open-weight", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "optical character recognition", "definitions_en": ["Also abbreviated as OCR."], "tags": [], "sources": ["mined"]}
+{"term": "optical flow", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "optimal transport", "definitions_en": ["Also abbreviated as OT."], "tags": [], "sources": ["mined"]}
+{"term": "optimization landscape", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "orthonormal", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "out-of-distribution", "definitions_en": ["Also abbreviated as OOD."], "tags": [], "sources": ["mined"]}
+{"term": "out-of-distribution detection", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "outlier channel", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "overthinking", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "p-value", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "padding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "pairwise comparison", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "panoptic quality", "definitions_en": ["Also abbreviated as PQ."], "tags": [], "sources": ["mined"]}
+{"term": "panoptic segmentation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "parameter space", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "parameter-efficient", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "pareto", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Pareto frontier", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "part of speech", "definitions_en": ["Also abbreviated as POS."], "tags": [], "sources": ["mined"]}
+{"term": "partial differential equation", "definitions_en": ["Also abbreviated as PDE."], "tags": [], "sources": ["mined"]}
+{"term": "partition function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "patch embedding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "pedestrian attribute recognition", "definitions_en": ["Also abbreviated as PAR."], "tags": [], "sources": ["mined"]}
+{"term": "persistent homology", "definitions_en": ["Also abbreviated as PH."], "tags": [], "sources": ["mined"]}
+{"term": "personally identifiable information", "definitions_en": ["Also abbreviated as PII."], "tags": [], "sources": ["mined"]}
+{"term": "perspective-n-point", "definitions_en": ["Also abbreviated as PnP."], "tags": [], "sources": ["mined"]}
+{"term": "perturbation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "photorealistic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "physically based rendering", "definitions_en": ["Also abbreviated as PBR."], "tags": [], "sources": ["mined"]}
+{"term": "physics-informed neural network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "plan-and-execute", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "planning domain definition language", "definitions_en": ["Also abbreviated as PDDL."], "tags": [], "sources": ["mined"]}
+{"term": "plug-and-play", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "point cloud", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "policy learning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "policy optimization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "polysemanticity", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "pose estimation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "position-wise feed-forward network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "positive sample/example", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "post-hoc", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "post-trained", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "post-training", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "post-training quantization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "posterior", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "preconditioning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "preference optimization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "preference pair", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "prefill", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "prefix caching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "prior knowledge", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "probability flow ODE", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "process reward model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "projection layer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "prompt compression", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "prototype", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "PSNR", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Q-Former", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "qk-norm", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "quadratic programming", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "quality estimation", "definitions_en": ["Also abbreviated as QE."], "tags": [], "sources": ["mined"]}
+{"term": "quantization-aware training", "definitions_en": ["Also abbreviated as QAT."], "tags": [], "sources": ["mined"]}
+{"term": "quantized KV cache", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "query rewriting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "question answering", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "question-answering", "definitions_en": ["Also abbreviated as QA."], "tags": [], "sources": ["mined"]}
+{"term": "Qwen", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Qwen2", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Qwen3", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Qwen3-8B", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Qwen3-VL", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "random projection", "definitions_en": ["Also abbreviated as RP."], "tags": [], "sources": ["mined"]}
+{"term": "random variable", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "RDMA", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "readout", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reasoning step", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reasoning trace", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reasoning trajectory", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "receiver operating characteristic", "definitions_en": ["Also abbreviated as ROC."], "tags": [], "sources": ["mined"]}
+{"term": "receptive field", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "rectified flow", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reference policy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reference-free evaluation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "referring expression comprehension", "definitions_en": ["Also abbreviated as REC."], "tags": [], "sources": ["mined"]}
+{"term": "referring-expression segmentation", "definitions_en": ["Also abbreviated as RES."], "tags": [], "sources": ["mined"]}
+{"term": "reflexion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reflow", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "region of interest", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "regions of interest", "definitions_en": ["Also abbreviated as ROI."], "tags": [], "sources": ["mined"]}
+{"term": "regressor", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reinforcement learning with verifiable reward", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "rejection sampling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "relative policy optimization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "remote sensing", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "renormalization group", "definitions_en": ["Also abbreviated as RG."], "tags": [], "sources": ["mined"]}
+{"term": "reparameterization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "report generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "representation engineering", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "representation space", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reproducing kernel Hilbert space", "definitions_en": ["Also abbreviated as RKHS."], "tags": [], "sources": ["mined"]}
+{"term": "reset gate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "residual network", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "retrieval head", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "retrieval-augmented", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "retrospective self-distillation", "definitions_en": ["Also abbreviated as RSD."], "tags": [], "sources": ["mined"]}
+{"term": "reward function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "reward model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "ring attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "RLVR", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "robot manipulation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "robotic manipulation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "robust", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "root-mean-square", "definitions_en": ["Also abbreviated as RMS."], "tags": [], "sources": ["mined"]}
+{"term": "rotating feature", "definitions_en": ["Also abbreviated as RF."], "tags": [], "sources": ["mined"]}
+{"term": "rubric", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "RWKV", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sample size", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sampling without replacement", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sandbagging", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "satisfiability-modulo-theory", "definitions_en": ["Also abbreviated as SMT."], "tags": [], "sources": ["mined"]}
+{"term": "satisficing metric", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "scalability", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "scanning electron microscopy", "definitions_en": ["Also abbreviated as SEM."], "tags": [], "sources": ["mined"]}
+{"term": "scene understanding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "scheming", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Schrödinger bridge", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "score matching", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "scoring function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "second-order", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "segment anything model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "selective scan", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-consistency", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-distillation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-evolving", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-instruct", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-play", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-refinement", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "self-supervised", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "semantic alignment", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "semantic role labeling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "semantic search", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "semantic segmentation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "semi-supervised", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sequence to sequence", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sequence-parallel", "definitions_en": ["Also abbreviated as SP."], "tags": [], "sources": ["mined"]}
+{"term": "sequential monte carlo", "definitions_en": ["Also abbreviated as SMC."], "tags": [], "sources": ["mined"]}
+{"term": "serialized output training", "definitions_en": ["Also abbreviated as SOT."], "tags": [], "sources": ["mined"]}
+{"term": "shared expert", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sharpness-aware minimization", "definitions_en": ["Also abbreviated as SAM."], "tags": [], "sources": ["mined"]}
+{"term": "shuffled differential privacy", "definitions_en": ["Also abbreviated as SDP."], "tags": [], "sources": ["mined"]}
+{"term": "signal-aware adaptive fusion", "definitions_en": ["Also abbreviated as SAAF."], "tags": [], "sources": ["mined"]}
+{"term": "signal-to-noise ratio", "definitions_en": ["Also abbreviated as SNR."], "tags": [], "sources": ["mined"]}
+{"term": "signed distance field", "definitions_en": ["Also abbreviated as SDF."], "tags": [], "sources": ["mined"]}
+{"term": "significance test", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "simultaneous localization and mapping", "definitions_en": ["Also abbreviated as SLAM."], "tags": [], "sources": ["mined"]}
+{"term": "single-turn", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "small language model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "soft actor-critic", "definitions_en": ["Also abbreviated as SAC."], "tags": [], "sources": ["mined"]}
+{"term": "SOTA", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sparse attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "spatial reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "spatiotemporal", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "speech translation", "definitions_en": ["Also abbreviated as ST."], "tags": [], "sources": ["mined"]}
+{"term": "speedup", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "SPLADE", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "splatting", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "squashing function", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "ssim", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "state space", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "state space model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "state-of-the-art", "definitions_en": ["Also abbreviated as SOTA."], "tags": [], "sources": ["mined"]}
+{"term": "state-space", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "stationary point", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "statistical power", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "statistical significance", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "steering vector", "definitions_en": ["Also abbreviated as SV."], "tags": [], "sources": ["mined"]}
+{"term": "stochastic differential equation", "definitions_en": ["Also abbreviated as SDE."], "tags": [], "sources": ["mined"]}
+{"term": "stochastic interpolant", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "stop word", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "straight-through estimator", "definitions_en": ["Also abbreviated as STE."], "tags": [], "sources": ["mined"]}
+{"term": "streaming multiprocessor", "definitions_en": ["Also abbreviated as SM."], "tags": [], "sources": ["mined"]}
+{"term": "structural causal model", "definitions_en": ["Also abbreviated as SCM."], "tags": [], "sources": ["mined"]}
+{"term": "structural similarity index measure", "definitions_en": ["Also abbreviated as SSIM."], "tags": [], "sources": ["mined"]}
+{"term": "structure-from-motion", "definitions_en": ["Also abbreviated as SfM."], "tags": [], "sources": ["mined"]}
+{"term": "structured output", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "structured query language", "definitions_en": ["Also abbreviated as SQL."], "tags": [], "sources": ["mined"]}
+{"term": "structured sparsity", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "style loss", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "success rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "successive convex approximation", "definitions_en": ["Also abbreviated as SCA."], "tags": [], "sources": ["mined"]}
+{"term": "sum of squared distance", "definitions_en": ["Also abbreviated as SSD."], "tags": [], "sources": ["mined"]}
+{"term": "sum-of-square", "definitions_en": ["Also abbreviated as SOS."], "tags": [], "sources": ["mined"]}
+{"term": "super-resolution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "superposition", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "supervised", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "surprisal", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "surrogate objective", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "swe-bench", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "sycophancy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "synthetic aperture radar", "definitions_en": ["Also abbreviated as SAR."], "tags": [], "sources": ["mined"]}
+{"term": "system 2 reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "tabular foundation model", "definitions_en": ["Also abbreviated as TFM."], "tags": [], "sources": ["mined"]}
+{"term": "target model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "target registration error", "definitions_en": ["Also abbreviated as TRE."], "tags": [], "sources": ["mined"]}
+{"term": "target speaker extraction", "definitions_en": ["Also abbreviated as TSE."], "tags": [], "sources": ["mined"]}
+{"term": "task success", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "task-agnostic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "task-specific", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Taylor expansion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "temporal attention", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "temporal consistency", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "temporal grounding", "definitions_en": ["Also abbreviated as TG."], "tags": [], "sources": ["mined"]}
+{"term": "temporal-difference", "definitions_en": ["Also abbreviated as TD."], "tags": [], "sources": ["mined"]}
+{"term": "tensor core", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "terminal-bench", "definitions_en": ["Also abbreviated as TB."], "tags": [], "sources": ["mined"]}
+{"term": "test statistic", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "test time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "test-time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "test-time adaptation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "test-time scaling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "text generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "text-only", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "text-to-image", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "text-to-image generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "text-to-speech", "definitions_en": ["Also abbreviated as TTS."], "tags": [], "sources": ["mined"]}
+{"term": "text-to-video", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "the cancer imaging archive", "definitions_en": ["Also abbreviated as TCIA."], "tags": [], "sources": ["mined"]}
+{"term": "theory of mind", "definitions_en": ["Also abbreviated as ToM."], "tags": [], "sources": ["mined"]}
+{"term": "thinking budget", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "time series", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "time series anomaly detection", "definitions_en": ["Also abbreviated as TSAD."], "tags": [], "sources": ["mined"]}
+{"term": "time series forecasting", "definitions_en": ["Also abbreviated as TSF."], "tags": [], "sources": ["mined"]}
+{"term": "time series foundation model", "definitions_en": ["Also abbreviated as TSFM."], "tags": [], "sources": ["mined"]}
+{"term": "time-sery", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "time-to-first-token", "definitions_en": ["Also abbreviated as TTFT."], "tags": [], "sources": ["mined"]}
+{"term": "titan", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "token merging", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "token pruning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "tokenization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "tool call", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "tool-integrated reasoning", "definitions_en": ["Also abbreviated as TIR."], "tags": [], "sources": ["mined"]}
+{"term": "top-1 accuracy", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "topology optimization", "definitions_en": ["Also abbreviated as TO."], "tags": [], "sources": ["mined"]}
+{"term": "total variation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "total variation denoising", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "trainable weight averaging", "definitions_en": ["Also abbreviated as TWA."], "tags": [], "sources": ["mined"]}
+{"term": "training objective", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "training-free", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "trajectory-level", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "transformer engine", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "transposed convolution", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "truncated backpropagation through time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "tsetlin automaton", "definitions_en": ["Also abbreviated as TA."], "tags": [], "sources": ["mined"]}
+{"term": "Tsetlin machine", "definitions_en": ["Also abbreviated as TM."], "tags": [], "sources": ["mined"]}
+{"term": "two-sided test", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "U-Net", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "uncertainty-aware", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "unified multimodal model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "unlearning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "unmanned aerial vehicle", "definitions_en": ["Also abbreviated as UAV."], "tags": [], "sources": ["mined"]}
+{"term": "upsample", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "user-generated content", "definitions_en": ["Also abbreviated as UGC."], "tags": [], "sources": ["mined"]}
+{"term": "variational inference", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "vector quantization", "definitions_en": ["Also abbreviated as VQ."], "tags": [], "sources": ["mined"]}
+{"term": "verifiable reward", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "verifiable rewards rlvr", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "verifier", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "video anomaly detection", "definitions_en": ["Also abbreviated as VAD."], "tags": [], "sources": ["mined"]}
+{"term": "video diffusion", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "video generation", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "video instance segmentation", "definitions_en": ["Also abbreviated as VIS."], "tags": [], "sources": ["mined"]}
+{"term": "video understanding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "video world model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "vision foundation model", "definitions_en": ["Also abbreviated as VFM."], "tags": [], "sources": ["mined"]}
+{"term": "vision transformer", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "vision-language", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "vision-language navigation", "definitions_en": ["Also abbreviated as VLN."], "tags": [], "sources": ["mined"]}
+{"term": "vision-language-action", "definitions_en": ["Also abbreviated as VLA."], "tags": [], "sources": ["mined"]}
+{"term": "vision-language-action (VLA) model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "vision-language-action model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual grounding", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual instruction tuning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual prompting", "definitions_en": ["Also abbreviated as VP."], "tags": [], "sources": ["mined"]}
+{"term": "visual question answering", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual reasoning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual token", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual token pruning", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "visual-semantic affect graph", "definitions_en": ["Also abbreviated as VSAG."], "tags": [], "sources": ["mined"]}
+{"term": "VLA model", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "voice conversion", "definitions_en": ["Also abbreviated as VC."], "tags": [], "sources": ["mined"]}
+{"term": "wall-clock time", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "warmup", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Wasserstein", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "watermarking", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "web agent", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "weight decay", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "weight streaming", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "weight-only quantization", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "Weisfeiler-Leman", "definitions_en": ["Also abbreviated as WL."], "tags": [], "sources": ["mined"]}
+{"term": "white-box", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "whitening", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "whole slide image", "definitions_en": ["Also abbreviated as WSI."], "tags": [], "sources": ["mined"]}
+{"term": "win rate", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "word error rate", "definitions_en": ["Also abbreviated as WER."], "tags": [], "sources": ["mined"]}
+{"term": "world action model", "definitions_en": ["Also abbreviated as WAM."], "tags": [], "sources": ["mined"]}
+{"term": "world modeling", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "xlstm", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "you only look once", "definitions_en": ["Also abbreviated as YOLO."], "tags": [], "sources": ["mined"]}
+{"term": "zero data retention", "definitions_en": ["Also abbreviated as ZDR."], "tags": [], "sources": ["mined"]}
+{"term": "zero-shot", "definitions_en": [], "tags": [], "sources": ["mined"]}
+{"term": "zero-shot segmentation", "definitions_en": [], "tags": [], "sources": ["mined"]}
