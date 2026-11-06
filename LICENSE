@@ -20,10 +20,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-
-This license covers the source code only (aidict/ and tests/).
-The dictionary data in data/ and the released aidict.mobi are licensed under
-Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0),
-https://creativecommons.org/licenses/by-sa/4.0/, because they include content
-from Wiktionary and Wikipedia. See README.md for the full list of sources.
