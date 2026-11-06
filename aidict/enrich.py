@@ -1,13 +1,13 @@
-"""Dịch + giải thích thuật ngữ AI sang tiếng Việt bằng LLM qua 9router. Kết quả cache trong data/enriched.jsonl."""
+"""Dịch + giải thích thuật ngữ AI sang tiếng Việt bằng LLM (API tương thích OpenAI). Kết quả cache trong data/enriched.jsonl."""
 import argparse
 import json
 import os
 import re
+import sys
 import time
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from pathlib import Path
 
 SYSTEM_PROMPT = """Bạn là biên tập viên từ điển thuật ngữ AI Anh–Việt, phục vụ người Việt đọc sách và bài báo kỹ thuật tiếng Anh trên Kindle.
 Đầu vào là một mảng JSON các thuật ngữ, mỗi thuật ngữ có định nghĩa tiếng Anh từ nguồn (có thể rỗng) và đôi khi có câu dịch tham khảo (references_vi).
@@ -79,16 +79,14 @@ def content_of(body: str) -> str:
     return json.loads(body)["choices"][0]["message"]["content"]
 
 
-def _api_key() -> str:
-    return os.environ.get("NINEROUTER_API_KEY") or (Path.home() / ".config" / "9router_key").read_text().strip()
-
-
 def call_llm(messages: list[dict]) -> str:
-    base = os.environ.get("LLM_BASE_URL", "http://192.168.1.29:20128/v1")
-    body = json.dumps({"model": os.environ.get("LLM_MODEL", "ag/gemini-3.8-flash-high"), "messages": messages,
+    missing = [k for k in ("LLM_BASE_URL", "LLM_MODEL", "LLM_API_KEY") if not os.environ.get(k)]
+    if missing:
+        sys.exit(f"Thiếu biến môi trường {', '.join(missing)} (xem mục Tự build trong README).")
+    body = json.dumps({"model": os.environ["LLM_MODEL"], "messages": messages,
                        "temperature": 0.2, "stream": False}).encode()
-    req = urllib.request.Request(f"{base}/chat/completions", data=body, headers={
-        "Authorization": f"Bearer {_api_key()}", "Content-Type": "application/json"})
+    req = urllib.request.Request(f"{os.environ['LLM_BASE_URL'].rstrip('/')}/chat/completions", data=body, headers={
+        "Authorization": f"Bearer {os.environ['LLM_API_KEY']}", "Content-Type": "application/json"})
     for wait in (5, 15, 45, None):
         try:
             with urllib.request.urlopen(req, timeout=300) as r:

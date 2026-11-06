@@ -1,7 +1,7 @@
 import json
 import time
 import pytest
-from aidict.enrich import content_of, parse_response, run
+from aidict.enrich import call_llm, content_of, parse_response, run
 
 ITEM = {"term": "overfitting", "pos": "n", "vi": ["quá khớp"], "keep_en": True,
         "short_vi": "Mô hình học thuộc dữ liệu huấn luyện nên dự đoán kém trên dữ liệu mới.",
@@ -76,3 +76,12 @@ def test_content_of_json_and_sse():
            'data: {"choices":[{"delta":{"content":"xin "}}]}\n\n'
            'data: {"choices":[{"delta":{"content":"chào"}}]}\n\ndata: [DONE]\n')
     assert content_of(sse) == "xin chào"
+
+def test_call_llm_requires_env(monkeypatch):
+    import urllib.request
+    for k in ("LLM_BASE_URL", "LLM_MODEL", "LLM_API_KEY", "NINEROUTER_API_KEY"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setattr(urllib.request, "urlopen", lambda *a, **k: (_ for _ in ()).throw(AssertionError("gọi mạng")))
+    with pytest.raises(SystemExit) as e:
+        call_llm([{"role": "user", "content": "hi"}])
+    assert "LLM_BASE_URL" in str(e.value) and "LLM_MODEL" in str(e.value) and "LLM_API_KEY" in str(e.value)

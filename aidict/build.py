@@ -128,9 +128,11 @@ def export_review(enriched: dict, path: str):
 
 
 TITLE = "AI Dictionary Anh–Việt"
-DESC = ("Wiktionary tiếng Việt (CC BY-SA, qua kaikki.org); Google ML Glossary (CC BY 4.0); "
-        "Wikipedia Glossary of AI (CC BY-SA); Stanford cheatsheets (MIT); "
-        "giải thích tiếng Việt do LLM sinh. Dùng cá nhân.")
+DESC = ("Từ điển Anh–Việt kèm 2.010 thuật ngữ AI có giải thích tiếng Việt. Nguồn: Wiktionary tiếng Việt "
+        "(CC BY-SA, qua kaikki.org); Google ML Glossary (CC BY 4.0); Wikipedia Glossary of AI (CC BY-SA); "
+        "Hugging Face Transformers glossary (Apache 2.0); bảng thuật ngữ D2L tiếng Việt; Stanford cheatsheets (MIT); "
+        "thuật ngữ quét từ arXiv. Phần tiếng Việt do LLM sinh. Phát hành theo CC BY-SA 4.0: "
+        "https://github.com/thucnc7/aidictionary")
 
 
 def write_opf(entries: list[tuple[str, list[str], str]], raw_dir: str) -> str:
